@@ -4,6 +4,7 @@ import java.lang.reflect.Array;
 import java.sql.*;
 import java.util.Arrays;
 
+import com.example.application.Application;
 import com.example.application.model.*;
 import javax.persistence.*;
 
@@ -31,6 +32,7 @@ public class DbQueries {
 
         }
         ResultSet rs = stmt.executeQuery("UPDATE st_groups SET "+query+" WHERE id="+groupId+" RETURNING *");
+        Application.LOGGER.info(Application.ADMIN_USER, "Admin actions are triggered");
         return  rs;
     }
 
@@ -54,18 +56,21 @@ public class DbQueries {
         }
 
         ResultSet rs = stmt.executeQuery("INSERT INTO st_groups ( "+query+" ) RETURNING *");
+        Application.LOGGER.info(Application.ADMIN_USER, "Admin actions are triggered");
         return  rs;
     }
 
     public ResultSet StGroupDelete(Integer groupId) throws SQLException  {
         Statement stmt = conn.createStatement();
         ResultSet rs = stmt.executeQuery("DELETE FROM st_groups WHERE id="+groupId+" RETURNING *");
+        Application.LOGGER.info(Application.ADMIN_USER, "Admin actions are triggered");
         return  rs;
     }
 
     public ResultSet StGroupGetById(Integer groupId) throws SQLException  {
         Statement stmt = conn.createStatement();
         ResultSet rs = stmt.executeQuery("SELECT * FROM st_groups WHERE id="+groupId);
+        Application.LOGGER.info(Application.GENERAL_USER, "User actions are triggered");
         return  rs;
     }
 
@@ -86,6 +91,7 @@ public class DbQueries {
 
         }
         ResultSet rs = stmt.executeQuery("UPDATE Lessons SET "+query+" WHERE id="+lessonId+" RETURNING *");
+        Application.LOGGER.info(Application.ADMIN_USER, "Admin actions are triggered");
         return  rs;
     }
 
@@ -109,18 +115,21 @@ public class DbQueries {
         }
 
         ResultSet rs = stmt.executeQuery("INSERT INTO Lessons ( "+query+" ) RETURNING *");
+        Application.LOGGER.info(Application.ADMIN_USER, "Admin actions are triggered");
         return  rs;
     }
 
     public ResultSet LessonDelete(Integer lessonId) throws SQLException  {
         Statement stmt = conn.createStatement();
         ResultSet rs = stmt.executeQuery("DELETE FROM Lessons WHERE id="+lessonId+" RETURNING *");
+        Application.LOGGER.info(Application.ADMIN_USER, "Admin actions are triggered");
         return  rs;
     }
 
     public ResultSet LessonGetById(Integer lessonId) throws SQLException  {
         Statement stmt = conn.createStatement();
         ResultSet rs = stmt.executeQuery("SELECT * FROM Lessons WHERE id="+lessonId);
+        Application.LOGGER.info(Application.GENERAL_USER, "User actions are triggered");
         return  rs;
     }
 
@@ -140,6 +149,7 @@ public class DbQueries {
 
         }
         ResultSet rs = stmt.executeQuery("UPDATE Subjects SET "+query+" WHERE id="+subjectId+" RETURNING *");
+        Application.LOGGER.info(Application.ADMIN_USER, "Admin actions are triggered");
         return  rs;
     }
 
@@ -163,18 +173,21 @@ public class DbQueries {
         }
 
         ResultSet rs = stmt.executeQuery("INSERT INTO Subjects ( "+query+" ) RETURNING *");
+        Application.LOGGER.info(Application.ADMIN_USER, "Admin actions are triggered");
         return  rs;
     }
 
     public ResultSet SubjectDelete(Integer subjectId) throws SQLException  {
         Statement stmt = conn.createStatement();
         ResultSet rs = stmt.executeQuery("DELETE FROM Subjects WHERE id="+subjectId+" RETURNING *");
+        Application.LOGGER.info(Application.ADMIN_USER, "Admin actions are triggered");
         return  rs;
     }
 
     public ResultSet SubjectGetById(Integer subjectId) throws SQLException  {
         Statement stmt = conn.createStatement();
         ResultSet rs = stmt.executeQuery("SELECT * FROM Subjects WHERE id="+subjectId);
+        Application.LOGGER.info(Application.GENERAL_USER, "User actions are triggered");
         return  rs;
     }
 
@@ -192,6 +205,7 @@ public class DbQueries {
 
         }
         ResultSet rs = stmt.executeQuery("UPDATE Students SET "+query+" WHERE id="+studentId+" RETURNING *");
+        Application.LOGGER.info(Application.ADMIN_USER, "Admin actions are triggered");
         return  rs;
     }
 
@@ -213,18 +227,21 @@ public class DbQueries {
         }
 
         ResultSet rs = stmt.executeQuery("INSERT INTO Students ( "+query+" ) RETURNING *");
+        Application.LOGGER.info(Application.ADMIN_USER, "Admin actions are triggered");
         return  rs;
     }
 
     public ResultSet StudentDelete(Integer studentId) throws SQLException  {
         Statement stmt = conn.createStatement();
         ResultSet rs = stmt.executeQuery("DELETE FROM Students WHERE id="+studentId+" RETURNING *");
+        Application.LOGGER.info(Application.ADMIN_USER, "Admin actions are triggered");
         return  rs;
     }
 
     public ResultSet StudentGetById(Integer studentId) throws SQLException  {
         Statement stmt = conn.createStatement();
         ResultSet rs = stmt.executeQuery("SELECT * FROM Students WHERE id="+studentId);
+        Application.LOGGER.info(Application.GENERAL_USER, "User actions are triggered");
         return  rs;
     }
 
