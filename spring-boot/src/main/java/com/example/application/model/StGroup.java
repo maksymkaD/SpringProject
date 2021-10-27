@@ -4,9 +4,13 @@ import lombok.Getter;
 import lombok.Setter;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Primary;
+import org.springframework.validation.annotation.Validated;
 
 import javax.persistence.*;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 
+@Validated
 @Getter
 @Setter
 @Entity
@@ -15,13 +19,13 @@ public class StGroup {
 
     @Id @PrimaryKeyJoinColumn @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer id;
-    @Column(name = "subjectId")
+    @Column(name = "subjectId")  @NotNull
     private Integer subjectId;
 
     public StGroup() {
     }
 
-    public StGroup(Integer id, Integer subjectId) {
+    public StGroup(@Valid  Integer id, Integer subjectId) {
         this.id = id;
         this.subjectId = subjectId;
     }
