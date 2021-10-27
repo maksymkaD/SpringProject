@@ -14,12 +14,12 @@ public class CustomExceptionHandler {
     @ExceptionHandler(value = {CustomRequestException.class})
     public ResponseEntity<Object> handleException(CustomRequestException x)
     {
-        TestStudentException TStudEx = new TestStudentException(
+        NotFoundException NotFoundEx = new NotFoundException(
                 x.getMessage(),
                 x,
                 HttpStatus.BAD_REQUEST,
                 ZonedDateTime.now(ZoneId.of("Z")));
 
-        return new ResponseEntity<>(TStudEx, HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(NotFoundEx, HttpStatus.BAD_REQUEST);
     }
 }
