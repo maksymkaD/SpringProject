@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Field Injection
@@ -17,5 +18,9 @@ public class StudentService {
 
     public List<Student> getAllStudents() {
         return studentDao.getAll();
+    }
+
+    public Optional<Student> getStudent(long id) {
+        return studentDao.get(id);
     }
 }
