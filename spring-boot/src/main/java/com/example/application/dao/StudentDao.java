@@ -15,7 +15,7 @@ public class StudentDao implements Dao<Student> {
     public StudentDao() {
         students.add(new Student(1, "john@domain.com", "123", "Jhon", "Deer",
                 1, 1999));
-        students.add(new Student(1, "susan@domain.com", "123", "Susan", "Deer",
+        students.add(new Student(2, "susan@domain.com", "345", "Susan", "Deer",
                 1, 1999));
     }
 

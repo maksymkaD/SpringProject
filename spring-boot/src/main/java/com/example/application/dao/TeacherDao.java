@@ -15,7 +15,7 @@ public class TeacherDao implements Dao<Teacher> {
     public TeacherDao() {
         teachers.add(new Teacher(1, "alice@domain.com", "123", "Alice", "Bob",
                 "Junior"));
-        teachers.add(new Teacher(1, "bob@domain.com", "123", "Bob", "Alice",
+        teachers.add(new Teacher(2, "bob@domain.com", "123", "Bob", "Alice",
                 "Senior"));
     }
 
