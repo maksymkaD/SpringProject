@@ -5,10 +5,9 @@ import com.example.application.model.Student;
 import com.example.application.service.StudentService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -40,6 +39,16 @@ public class StudentController {
         Optional<Student> student = studentService.getStudent(id);
 
         return convertToDto(student.get());
+    }
+
+    @PostMapping(path = "/students")
+    public void createAdmin(@RequestBody Student student){
+        studentService.createStudent(student);
+    }
+
+    @DeleteMapping("/students")
+    public void deleteStudent(@RequestBody Student student) {
+        studentService.deleteStudent(student);
     }
 
     private StudentDTO convertToDto(@Valid  Student student) {

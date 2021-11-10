@@ -23,4 +23,8 @@ public class StudentService {
     public Optional<Student> getStudent(long id) {
         return studentDao.get(id);
     }
+
+    public void deleteStudent(Student student) { studentDao.delete(student); }
+
+    public void createStudent(Student student) { studentDao.save(student); }
 }
