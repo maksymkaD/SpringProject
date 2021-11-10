@@ -1,9 +1,7 @@
 package com.example.application.model;
 
-import com.example.application.dto.StudentDTO;
 import lombok.Getter;
 import lombok.Setter;
-import org.modelmapper.ModelMapper;
 import org.springframework.validation.annotation.Validated;
 
 import javax.persistence.*;

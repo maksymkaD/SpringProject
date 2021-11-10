@@ -1,7 +1,6 @@
 package com.example.application.controller;
 
 import com.example.application.dto.StudentDTO;
-import com.example.application.exceptions.CustomRequestException;
 import com.example.application.model.Student;
 import com.example.application.service.StudentService;
 import org.modelmapper.ModelMapper;

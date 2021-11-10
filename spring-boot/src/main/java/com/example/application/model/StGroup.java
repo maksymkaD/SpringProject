@@ -2,8 +2,6 @@ package com.example.application.model;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.context.annotation.Primary;
 import org.springframework.validation.annotation.Validated;
 
 import javax.persistence.*;
