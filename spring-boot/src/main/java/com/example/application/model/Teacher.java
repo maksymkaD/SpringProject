@@ -29,6 +29,10 @@ public class Teacher {
     @Column (name = "position") @NotEmpty
     private String position; // junior professor | senior professor etc.
 
+    public Teacher() {
+
+    }
+
     public Teacher(@Valid  Integer id, String email, String password, String firstName,
                    String lastName, String position) {
         this.id = id;
@@ -38,6 +42,5 @@ public class Teacher {
         this.lastName = lastName;
         this.position = position;
     }
-
 
 }
