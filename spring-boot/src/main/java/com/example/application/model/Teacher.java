@@ -9,6 +9,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import java.util.Set;
 
 @Validated
 @Getter
@@ -16,7 +17,7 @@ import javax.validation.constraints.NotNull;
 @Entity
 @Table(name = "Teachers")
 public class Teacher {
-    @Id @PrimaryKeyJoinColumn @NotNull
+    @Id @PrimaryKeyJoinColumn @NotNull @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer id;
     @Column (name = "email") @Email
     private String email;
@@ -42,5 +43,22 @@ public class Teacher {
         this.lastName = lastName;
         this.position = position;
     }
+
+    @ManyToMany
+    @JoinTable(name="teacher_subjects",
+            joinColumns = @JoinColumn(name="teacher_id", referencedColumnName="id"),
+            inverseJoinColumns = @JoinColumn(name="subject_id", referencedColumnName="id")
+    )
+    private Set<Subject> subjects;
+
+    public Set<Subject> getSubjects() {
+        return subjects;
+    }
+
+    public void setSubjects(Set<Subject> subjects) {
+        this.subjects = subjects;
+    }
+
+
 
 }

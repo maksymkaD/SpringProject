@@ -17,7 +17,7 @@ public class DbQueries {
 
     //groups
 
-    public ResultSet StGroupUpdate(Integer groupId, String[] param_names, String[] param_values)
+    public void StGroupUpdate(Integer groupId, String[] param_names, String[] param_values)
             throws DbQueryException, SQLException {
         if(param_names.length != param_values.length)
             throw new DbQueryException("Unmatching sizes of fiels and values arrays");
@@ -30,11 +30,11 @@ public class DbQueries {
            if(i!=param_names.length - 1) query += " , ";
 
         }
-        ResultSet rs = stmt.executeQuery("UPDATE st_groups SET "+query+" WHERE id="+groupId+" RETURNING *");
-        return  rs;
+        stmt.executeUpdate("UPDATE st_groups SET "+query+" WHERE id="+groupId+"");
+
     }
 
-    public ResultSet StGroupCreate(String[] param_names, String[] param_values)
+    public void StGroupCreate(String[] param_names, String[] param_values)
             throws DbQueryException, SQLException {
         if(param_names.length != param_values.length)
             throw new DbQueryException("Non-matching sizes of fields and values arrays");
@@ -49,18 +49,17 @@ public class DbQueries {
         }
 
         for(int i=0; i<param_values.length; i++) {
-            query+=param_values[i];
+            query+="'"+param_values[i]+"'";
             if(i!=param_values.length - 1) query += " , ";
         }
 
-        ResultSet rs = stmt.executeQuery("INSERT INTO st_groups ( "+query+" ) RETURNING *");
-        return  rs;
+      stmt.executeUpdate("INSERT INTO st_groups ( "+query+" )");
+
     }
 
-    public ResultSet StGroupDelete(Integer groupId) throws SQLException  {
+    public void StGroupDelete(Integer groupId) throws SQLException  {
         Statement stmt = conn.createStatement();
-        ResultSet rs = stmt.executeQuery("DELETE FROM st_groups WHERE id="+groupId+" RETURNING *");
-        return  rs;
+        stmt.executeUpdate("DELETE FROM st_groups WHERE id="+groupId+"");
     }
 
     public ResultSet StGroupGetById(Integer groupId) throws SQLException  {
@@ -72,7 +71,7 @@ public class DbQueries {
 
     //lessons
 
-    public ResultSet LessonUpdate(Integer lessonId, String[] param_names, String[] param_values)
+    public void LessonUpdate(Integer lessonId, String[] param_names, String[] param_values)
             throws DbQueryException, SQLException {
         if(param_names.length != param_values.length)
             throw new DbQueryException("Unmatching sizes of fiels and values arrays");
@@ -85,11 +84,10 @@ public class DbQueries {
             if(i!=param_names.length - 1) query += " , ";
 
         }
-        ResultSet rs = stmt.executeQuery("UPDATE Lessons SET "+query+" WHERE id="+lessonId+" RETURNING *");
-        return  rs;
+        stmt.executeUpdate("UPDATE Lessons SET "+query+" WHERE id="+lessonId+"");
     }
 
-    public ResultSet LessonCreate(String[] param_names, String[] param_values)
+    public void LessonCreate(String[] param_names, String[] param_values)
             throws DbQueryException, SQLException {
         if(param_names.length != param_values.length)
             throw new DbQueryException("Non-matching sizes of fields and values arrays");
@@ -104,18 +102,17 @@ public class DbQueries {
         }
 
         for(int i=0; i<param_values.length; i++) {
-            query+=param_values[i];
+            query+="'"+param_values[i]+"'";
             if(i!=param_values.length - 1) query += " , ";
         }
 
-        ResultSet rs = stmt.executeQuery("INSERT INTO Lessons ( "+query+" ) RETURNING *");
-        return  rs;
+        stmt.executeUpdate("INSERT INTO Lessons ( "+query+" )");
     }
 
-    public ResultSet LessonDelete(Integer lessonId) throws SQLException  {
+    public void LessonDelete(Integer lessonId) throws SQLException  {
         Statement stmt = conn.createStatement();
-        ResultSet rs = stmt.executeQuery("DELETE FROM Lessons WHERE id="+lessonId+" RETURNING *");
-        return  rs;
+       stmt.executeUpdate("DELETE FROM Lessons WHERE id="+lessonId+"");
+
     }
 
     public ResultSet LessonGetById(Integer lessonId) throws SQLException  {
@@ -126,7 +123,7 @@ public class DbQueries {
 
     //subjects
 
-    public ResultSet SubjectUpdate(Integer subjectId, String[] param_names, String[] param_values)
+    public void SubjectUpdate(Integer subjectId, String[] param_names, String[] param_values)
             throws DbQueryException, SQLException {
         if(param_names.length != param_values.length)
             throw new DbQueryException("Unmatching sizes of fiels and values arrays");
@@ -139,11 +136,11 @@ public class DbQueries {
             if(i!=param_names.length - 1) query += " , ";
 
         }
-        ResultSet rs = stmt.executeQuery("UPDATE Subjects SET "+query+" WHERE id="+subjectId+" RETURNING *");
-        return  rs;
+        stmt.executeUpdate("UPDATE Subjects SET "+query+" WHERE id="+subjectId+"");
+
     }
 
-    public ResultSet SubjectCreate(String[] param_names, String[] param_values)
+    public void SubjectCreate(String[] param_names, String[] param_values)
             throws DbQueryException, SQLException {
         if(param_names.length != param_values.length)
             throw new DbQueryException("Non-matching sizes of fields and values arrays");
@@ -158,18 +155,16 @@ public class DbQueries {
         }
 
         for(int i=0; i<param_values.length; i++) {
-            query+=param_values[i];
+            query+="'"+param_values[i]+"'";
             if(i!=param_values.length - 1) query += " , ";
         }
 
-        ResultSet rs = stmt.executeQuery("INSERT INTO Subjects ( "+query+" ) RETURNING *");
-        return  rs;
+        stmt.executeUpdate("INSERT INTO Subjects ( "+query+" )");
     }
 
-    public ResultSet SubjectDelete(Integer subjectId) throws SQLException  {
+    public void SubjectDelete(Integer subjectId) throws SQLException  {
         Statement stmt = conn.createStatement();
-        ResultSet rs = stmt.executeQuery("DELETE FROM Subjects WHERE id="+subjectId+" RETURNING *");
-        return  rs;
+        stmt.executeUpdate("DELETE FROM Subjects WHERE id="+subjectId+"");
     }
 
     public ResultSet SubjectGetById(Integer subjectId) throws SQLException  {
@@ -180,7 +175,7 @@ public class DbQueries {
 
     //students
 
-    public ResultSet StudentUpdate(Integer studentId, String[] param_names, String[] param_values)
+    public void StudentUpdate(Integer studentId, String[] param_names, String[] param_values)
             throws DbQueryException, SQLException {
         if(param_names.length != param_values.length)
             throw new DbQueryException("Unmatching sizes of fiels and values arrays");
@@ -191,11 +186,10 @@ public class DbQueries {
             if(i!=param_names.length - 1) query += " , ";
 
         }
-        ResultSet rs = stmt.executeQuery("UPDATE Students SET "+query+" WHERE id="+studentId+" RETURNING *");
-        return  rs;
+       stmt.executeUpdate("UPDATE Students SET "+query+" WHERE id="+studentId+"");
     }
 
-    public ResultSet StudentCreate(String[] param_names, String[] param_values)
+    public void StudentCreate(String[] param_names, String[] param_values)
             throws DbQueryException, SQLException {
         if(param_names.length != param_values.length)
             throw new DbQueryException("Non-matching sizes of fields and values arrays");
@@ -208,18 +202,17 @@ public class DbQueries {
         }
 
         for(int i=0; i<param_values.length; i++) {
-            query+=param_values[i];
+            query+="'"+param_values[i]+"'";
             if(i!=param_values.length - 1) query += " , ";
         }
 
-        ResultSet rs = stmt.executeQuery("INSERT INTO Students ( "+query+" ) RETURNING *");
-        return  rs;
+        stmt.executeUpdate("INSERT INTO Students ( "+query+" )");
+
     }
 
-    public ResultSet StudentDelete(Integer studentId) throws SQLException  {
+    public void StudentDelete(Integer studentId) throws SQLException  {
         Statement stmt = conn.createStatement();
-        ResultSet rs = stmt.executeQuery("DELETE FROM Students WHERE id="+studentId+" RETURNING *");
-        return  rs;
+        stmt.executeUpdate("DELETE FROM Students WHERE id="+studentId+"");
     }
 
     public ResultSet StudentGetById(Integer studentId) throws SQLException  {
@@ -230,7 +223,7 @@ public class DbQueries {
 
     //teachers
 
-    public ResultSet TeacherUpdate(Integer teacherId, String[] param_names, String[] param_values)
+    public void TeacherUpdate(Integer teacherId, String[] param_names, String[] param_values)
             throws DbQueryException, SQLException {
         if(param_names.length != param_values.length)
             throw new DbQueryException("Unmatching sizes of fiels and values arrays");
@@ -241,11 +234,11 @@ public class DbQueries {
             if(i!=param_names.length - 1) query += " , ";
 
         }
-        ResultSet rs = stmt.executeQuery("UPDATE Teachers SET "+query+" WHERE id="+teacherId+" RETURNING *");
-        return  rs;
+        stmt.executeUpdate("UPDATE Teachers SET "+query+" WHERE id="+teacherId+"");
+
     }
 
-    public ResultSet TeacherCreate(String[] param_names, String[] param_values)
+    public void TeacherCreate(String[] param_names, String[] param_values)
             throws DbQueryException, SQLException {
         if(param_names.length != param_values.length)
             throw new DbQueryException("Non-matching sizes of fields and values arrays");
@@ -258,18 +251,16 @@ public class DbQueries {
         }
 
         for(int i=0; i<param_values.length; i++) {
-            query+=param_values[i];
+            query+="'"+param_values[i]+"'";
             if(i!=param_values.length - 1) query += " , ";
         }
 
-        ResultSet rs = stmt.executeQuery("INSERT INTO Teachers ( "+query+" ) RETURNING *");
-        return  rs;
+        stmt.executeUpdate("INSERT INTO Teachers ( "+query+" )");
     }
 
-    public ResultSet TeacherDelete(Integer teacherId) throws SQLException  {
+    public void TeacherDelete(Integer teacherId) throws SQLException  {
         Statement stmt = conn.createStatement();
-        ResultSet rs = stmt.executeQuery("DELETE FROM Teachers WHERE id="+teacherId+" RETURNING *");
-        return  rs;
+        stmt.executeUpdate("DELETE FROM Teachers WHERE id="+teacherId+"");
     }
 
     public ResultSet TeacherGetById(Integer teacherId) throws SQLException  {

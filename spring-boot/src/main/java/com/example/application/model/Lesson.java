@@ -2,12 +2,16 @@ package com.example.application.model;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.sql.Update;
 import org.springframework.validation.annotation.Validated;
 
 import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import java.sql.Date;
+import java.time.LocalDateTime;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -24,7 +28,7 @@ public class Lesson {
     private Integer groupId;
     @Column(name = "teacherId")  @NotEmpty
     private Integer teacherId;
-    @Column(name = "date")  @NotNull
+    @Column(name = "date", columnDefinition = "TIMESTAMP")
     private String date;
     @Column(name = "type") @NotEmpty
     private String type; // lecture | practice
@@ -40,6 +44,5 @@ public class Lesson {
         this.date = date;
         this.type = type;
     }
-
 
 }
