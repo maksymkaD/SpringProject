@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Component
 public class StudentDao implements Dao<Student> {
@@ -15,13 +16,13 @@ public class StudentDao implements Dao<Student> {
     public StudentDao() {
         students.add(new Student(1, "john@domain.com", "123", "Jhon", "Deer",
                 1, 1999));
-        students.add(new Student(1, "susan@domain.com", "123", "Susan", "Deer",
+        students.add(new Student(2, "susan@domain.com", "345", "Susan", "Deer",
                 1, 1999));
     }
 
     @Override
     public Optional<Student> get(long id) {
-        return Optional.ofNullable(students.get((int) id));
+        return Optional.ofNullable(students.stream().filter(student -> student.getId() == id).collect(Collectors.toList()).get(0));
     }
 
     @Override
