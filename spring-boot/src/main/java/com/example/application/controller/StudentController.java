@@ -1,10 +1,13 @@
 package com.example.application.controller;
 
 import com.example.application.dto.StudentDTO;
+import com.example.application.exceptions.CustomExceptionHandler;
+import com.example.application.exceptions.CustomRequestException;
 import com.example.application.model.Student;
 import com.example.application.service.StudentService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -35,10 +38,16 @@ public class StudentController {
     }
 
     @GetMapping("/student/{id}")
-    public StudentDTO getStudent(@PathVariable("id") long id) {
+    public ResponseEntity<Object> getStudent(@PathVariable("id") long id) {
         Optional<Student> student = studentService.getStudent(id);
 
-        return convertToDto(student.get());
+        if (!student.isPresent()) {
+            CustomExceptionHandler customExceptionHandler = new CustomExceptionHandler();
+            return customExceptionHandler.handleException(
+                    new CustomRequestException("No student with such id found")
+            );
+        }
+        return new ResponseEntity<>(convertToDto(student.get()), HttpStatus.OK);
     }
 
     @PostMapping(path = "/students")

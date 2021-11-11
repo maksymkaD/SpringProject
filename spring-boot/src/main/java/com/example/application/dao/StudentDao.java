@@ -22,7 +22,9 @@ public class StudentDao implements Dao<Student> {
 
     @Override
     public Optional<Student> get(long id) {
-        return Optional.ofNullable(students.stream().filter(student -> student.getId() == id).collect(Collectors.toList()).get(0));
+        List<Student> matched_list = students.stream().filter(student -> student.getId() == id).collect(Collectors.toList());
+        if (matched_list.size() == 0) return Optional.empty();
+        return Optional.ofNullable(matched_list.get(0));
     }
 
     @Override
