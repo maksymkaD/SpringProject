@@ -14,7 +14,7 @@ public class SubjectDao implements Dao<Subject> {
 
     public SubjectDao() {
         subjects.add(new Subject(1, "Math", 1));
-        subjects.add(new Subject(1, "Physics", 2));
+        subjects.add(new Subject(2, "Physics", 2));
     }
 
     @Override
