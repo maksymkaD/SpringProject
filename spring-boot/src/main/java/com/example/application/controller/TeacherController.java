@@ -1,42 +1,42 @@
 package com.example.application.controller;
 
-import com.example.application.dto.TeacherDTO;
 import com.example.application.model.Teacher;
 import com.example.application.service.TeacherService;
-import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.util.List;
-import java.util.stream.Collectors;
 
-/**
- * Constructor Injection
- */
 @Validated
 @RestController
 public class TeacherController {
-    TeacherService teacherService;
-    ModelMapper modelMapper;
 
-    public TeacherController(TeacherService teacherService, ModelMapper modelMapper) {
+    private final TeacherService teacherService;
+
+    @Autowired
+    public TeacherController(TeacherService teacherService) {
         this.teacherService = teacherService;
-        this.modelMapper = modelMapper;
     }
 
     @GetMapping("/teachers")
-    public List<TeacherDTO> getAllStudents() {
-
-        List<Teacher> teachers = teacherService.getAllTeachers();
-
-        return teachers.stream()
-                .map(this::convertToDto)
-                .collect(Collectors.toList());
+    public ResponseEntity<List<Teacher>> getAllTeachers() {
+        return teacherService.getAllTeachers();
     }
 
-    private TeacherDTO convertToDto(@Valid Teacher teacher) {
-        return modelMapper.map(teacher, TeacherDTO.class);
+    @GetMapping("/teacher/{id}")
+    public ResponseEntity<Object> getTeacher(@PathVariable("id") long id) {
+        return teacherService.getTeacher(id);
+    }
+
+    @PostMapping(path = "/teachers")
+    public void createTeacher(@RequestBody Teacher teacher){
+        teacherService.createTeacher(teacher);
+    }
+
+    @DeleteMapping("/teachers")
+    public void deleteTeacher(@RequestBody Teacher teacher) {
+        teacherService.deleteTeacher(teacher);
     }
 }
