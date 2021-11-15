@@ -68,6 +68,12 @@ public class DbQueries {
         return  rs;
     }
 
+    public ResultSet StGroupsAll() throws SQLException  {
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery("SELECT * FROM st_groups");
+        return  rs;
+    }
+
 
     //lessons
 
@@ -118,6 +124,12 @@ public class DbQueries {
     public ResultSet LessonGetById(Integer lessonId) throws SQLException  {
         Statement stmt = conn.createStatement();
         ResultSet rs = stmt.executeQuery("SELECT * FROM Lessons WHERE id="+lessonId);
+        return  rs;
+    }
+
+    public ResultSet LessonsAll() throws SQLException  {
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery("SELECT * FROM Lessons");
         return  rs;
     }
 
@@ -173,6 +185,12 @@ public class DbQueries {
         return  rs;
     }
 
+    public ResultSet SubjectsAll() throws SQLException  {
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery("SELECT * FROM Subjects");
+        return  rs;
+    }
+
     //students
 
     public void StudentUpdate(Integer studentId, String[] param_names, String[] param_values)
@@ -215,9 +233,9 @@ public class DbQueries {
         stmt.executeUpdate("DELETE FROM Students WHERE id="+studentId+"");
     }
 
-    public ResultSet StudentGetById(Integer studentId) throws SQLException  {
+    public ResultSet StudentsAll() throws SQLException  {
         Statement stmt = conn.createStatement();
-        ResultSet rs = stmt.executeQuery("SELECT * FROM Students WHERE id="+studentId);
+        ResultSet rs = stmt.executeQuery("SELECT * FROM Students");
         return  rs;
     }
 
@@ -266,6 +284,12 @@ public class DbQueries {
     public ResultSet TeacherGetById(Integer teacherId) throws SQLException  {
         Statement stmt = conn.createStatement();
         ResultSet rs = stmt.executeQuery("SELECT * FROM Teachers WHERE id="+teacherId);
+        return  rs;
+    }
+
+    public ResultSet TeacherAll() throws SQLException  {
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery("SELECT * FROM Teachers");
         return  rs;
     }
 
