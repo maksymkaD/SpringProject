@@ -14,8 +14,8 @@ import javax.validation.constraints.*;
 @Entity
 @Table(name = "Students")
 public class Student {
-    @Id @PrimaryKeyJoinColumn @NotNull
-    private Integer id;
+    @Id @PrimaryKeyJoinColumn @NotNull @GeneratedValue(strategy=GenerationType.IDENTITY)
+    private Long id;
     @Column(name = "email") @Email
     private String email;
     @Column(name = "password") @NotEmpty
@@ -31,7 +31,17 @@ public class Student {
 
     public Student() {}
 
-    public Student(@Valid  Integer id, String email, String password, String firstName,
+    public Student(@Valid String email, String password, String firstName,
+                   String lastName, Integer facultyId, Integer yearOfStudy) {
+        this.email = email;
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.facultyId = facultyId;
+        this.yearOfStudy = yearOfStudy;
+    }
+
+    public Student(@Valid  Long id, String email, String password, String firstName,
                    String lastName, Integer facultyId, Integer yearOfStudy) {
         this.id = id;
         this.email = email;

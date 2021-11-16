@@ -19,28 +19,26 @@ import java.util.Optional;
 public class StudentService {
 
     private final StudentRepository studentRepository;
+    private final CustomExceptionHandler customExceptionHandler;
 
-    @Autowired
-    public StudentService(StudentRepository studentRepository) {
+    public StudentService(StudentRepository studentRepository, CustomExceptionHandler customExceptionHandler) {
         this.studentRepository = studentRepository;
+        this.customExceptionHandler = customExceptionHandler;
     }
 
     public ResponseEntity<List<Student>> getAllStudents() {
         return new ResponseEntity<>(studentRepository.findAll(), HttpStatus.OK);
-
     }
 
     public ResponseEntity<Object> getStudent(long id) {
         Optional<Student> optionalStudent = studentRepository.findById(id);
-        if (!optionalStudent.isPresent()) {
-            CustomExceptionHandler customExceptionHandler = new CustomExceptionHandler();
-            return new ResponseEntity<>(
-                customExceptionHandler.handleException(
+        /*if (!optionalStudent.isPresent()) {
+            return customExceptionHandler.handleException(
                     new CustomRequestException(String.format("Student with id %s was not found", id))
-                ), HttpStatus.NOT_FOUND);
-        } else {
-            return new ResponseEntity<>(optionalStudent.get(), HttpStatus.OK);
-        }
+            );
+        }*/
+        return new ResponseEntity<>(optionalStudent.get(), HttpStatus.OK);
+
     }
 
     public void createStudent(Student student) { studentRepository.save(student); }
