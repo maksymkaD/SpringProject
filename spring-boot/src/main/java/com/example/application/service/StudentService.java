@@ -41,9 +41,11 @@ public class StudentService {
 
     }
 
-    public void createStudent(Student student) { studentRepository.save(student); }
+    public ResponseEntity<Object> createStudent(Student student) {
+        student = studentRepository.save(student);
+        return new ResponseEntity<>(student, HttpStatus.CREATED);
+    }
 
     public void deleteStudent(Student student) { studentRepository.delete(student); }
-
 
 }
