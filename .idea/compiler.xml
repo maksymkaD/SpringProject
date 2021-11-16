@@ -7,17 +7,20 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="nosql-db-spring-boot-starter" />
         <module name="schedule-fi" />
         <module name="spring-boot" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="nosql-db-spring-boot-starter" target="11" />
       <module name="schedule-fi" target="1.8" />
       <module name="spring-boot" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="nosql-db-spring-boot-starter" options="-parameters" />
       <module name="schedule-fi" options="-parameters" />
       <module name="spring-boot" options="-parameters" />
     </option>

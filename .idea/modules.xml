@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/Schedule.iml" filepath="$PROJECT_DIR$/.idea/Schedule.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../nosql-db-spring-boot-starter/nosql-db-spring-boot-starter.iml" filepath="$PROJECT_DIR$/../nosql-db-spring-boot-starter/nosql-db-spring-boot-starter.iml" />
       <module fileurl="file://$PROJECT_DIR$/spring-boot/schedule-fi.iml" filepath="$PROJECT_DIR$/spring-boot/schedule-fi.iml" />
       <module fileurl="file://$PROJECT_DIR$/spring-boot/spring-boot.iml" filepath="$PROJECT_DIR$/spring-boot/spring-boot.iml" />
     </modules>
