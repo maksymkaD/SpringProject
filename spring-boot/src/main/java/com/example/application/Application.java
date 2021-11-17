@@ -1,6 +1,5 @@
 package com.example.application;
 
-import com.example.application.config.*;
 import com.example.application.db.DbQueries;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
