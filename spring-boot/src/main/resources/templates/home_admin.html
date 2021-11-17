@@ -1,8 +1,34 @@
 <html>
 <head>
-
+    <title>Admin root page</title>
+    <style type="text/css">
+     h1 {
+    font-size: 120%;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    color: #55555F;
+    }
+    #based {
+    background-color: #55555F; /
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    }
+    p {
+    font-size: 120%;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    color: #000000;
+    }
+  </style>
 </head>
 <body>
 <h1> Greetings, admin!</h1>
+<p>You have FULL ACCESS to API and database.</p>
+<form action="http://localhost:8080/h2-ui">
+    <input id="based" type="submit" value="DATABASE" />
+</form>
 </body>
 </html>

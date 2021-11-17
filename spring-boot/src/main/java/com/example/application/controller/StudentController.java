@@ -42,7 +42,7 @@ public class StudentController {
     }
 
     @PostMapping(path = "/students")
-    public void createAdmin(@RequestBody Student student){
+    public void createStudent(@RequestBody Student student){
         studentService.createStudent(student);
     }
 

@@ -1,9 +1,18 @@
 package com.example.application.auth;
 
-import org.springframework.stereotype.Component;
+enum Roles {
+    ADMIN("ADMIN"),
+    USER("USER");
 
-@Component
-public class Roles {
-    public final String ADMIN = "ADMIN";
-    public final String USER = "USER";
+    private final String role;
+
+    Roles(String role) {
+        this.role = role;
+    }
+
+    @Override
+    public String toString(){
+        return role;
+    }
+
 }

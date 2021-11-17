@@ -19,23 +19,22 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth.inMemoryAuthentication().withUser("user").
-                password(passwordEncoder().encode("password")).roles("USER");
+                password(passwordEncoder().encode("password")).roles(Roles.USER.toString());
 
         auth.inMemoryAuthentication().withUser("admin").
-                password(passwordEncoder().encode("secret")).roles("ADMIN");
-
+                password(passwordEncoder().encode("secret")).roles(Roles.ADMIN.toString());
 
     }
 
     @Bean
     public PasswordEncoder passwordEncoder() {return new BCryptPasswordEncoder();}
 
-
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
-        http.authorizeRequests().antMatchers("/").access("hasRole('USER')")
-                .antMatchers("/admin/**").hasRole("ADMIN").and().formLogin();
+        http.authorizeRequests().antMatchers("/").access("hasRole('"+Roles.USER.toString()+"')")
+                .antMatchers("/admin/**").hasRole(Roles.ADMIN.toString())
+                .antMatchers("/h2-ui/**").hasRole(Roles.ADMIN.toString()).and().formLogin();
 
     }
 }
