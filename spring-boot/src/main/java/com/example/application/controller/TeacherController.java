@@ -44,12 +44,12 @@ public class TeacherController {
         return convertToDto(subject.get());
     }
 
-    @PostMapping(path = "/teachers")
+    @PostMapping(path = "/admin/teachers")
     public void createStudent(@RequestBody Teacher teacher){
         teacherService.createTeacher(teacher);
     }
 
-    @DeleteMapping("/teachers")
+    @DeleteMapping("/admin/teachers")
     public void deleteStudent(@RequestBody Teacher teacher) {
         teacherService.deleteTeacher(teacher);
     }

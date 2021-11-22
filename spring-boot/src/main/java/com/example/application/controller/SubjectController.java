@@ -48,12 +48,12 @@ public class SubjectController {
         return convertToDto(subject.get());
     }
 
-    @PostMapping(path = "/subjects")
+    @PostMapping(path = "/admin/subjects")
     public void createStudent(@RequestBody Subject subject){
         subjectService.createSubject(subject);
     }
 
-    @DeleteMapping("/subjects")
+    @DeleteMapping("/admin/subjects")
     public void deleteStudent(@RequestBody Subject subject) {
         subjectService.deleteSubject(subject);
     }

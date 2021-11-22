@@ -41,12 +41,12 @@ public class StudentController {
         return convertToDto(student.get());
     }
 
-    @PostMapping(path = "/students")
+    @PostMapping(path = "/admin/students")
     public void createStudent(@RequestBody Student student){
         studentService.createStudent(student);
     }
 
-    @DeleteMapping("/students")
+    @DeleteMapping("/admin/students")
     public void deleteStudent(@RequestBody Student student) {
         studentService.deleteStudent(student);
     }
