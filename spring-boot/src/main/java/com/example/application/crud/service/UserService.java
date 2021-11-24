@@ -1,5 +1,6 @@
 package com.example.application.crud.service;
 
+import com.example.application.crud.dto.users.TeacherDTO;
 import com.example.application.crud.model.User;
 import com.example.application.crud.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +27,10 @@ public class UserService {
 
     public void createStudent(User user) { userRepository.save(user); }
 
-    public void createTeacher(User user) { userRepository.save(user); }
+    public void createTeacher(TeacherDTO teacherDTO) {
+        User teacher = new User(teacherDTO.getEmail(), teacherDTO.getPassword(), teacherDTO.getName(), teacherDTO.getPosition());
+        userRepository.save(teacher);
+    }
 
     public void updateUser(User user) { userRepository.save(user); }
 

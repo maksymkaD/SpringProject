@@ -47,8 +47,8 @@ public class User {
     public User() {}
 
     // student constructor
-    public User(@Valid  Integer id, String email, String password, String name, Integer year) {
-        this.id = id;
+    public User(String email, String password, String name, Integer year) {
+//        this.id = id;
         this.email = email;
         this.password = password;
         this.name = name;
@@ -57,8 +57,8 @@ public class User {
 
 
     // teacher constructor
-    public User(@Valid  Integer id, String email, String password, String first_name, String position) {
-        this.id = id;
+    public User(String email, String password, String first_name, String position) {
+//        this.id = id;
         this.email = email;
         this.password = password;
         this.name = first_name;

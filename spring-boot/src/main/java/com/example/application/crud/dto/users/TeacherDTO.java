@@ -9,7 +9,6 @@ public class TeacherDTO {
     private Integer id;
     private String email;
     private String password;
-    private String firstName;
-    private String lastName;
-    private String position; // junior professor | senior professor etc.
+    private String name;
+    private String position;
 }

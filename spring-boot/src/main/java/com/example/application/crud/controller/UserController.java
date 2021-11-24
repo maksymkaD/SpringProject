@@ -1,12 +1,15 @@
 package com.example.application.crud.controller;
 
+import com.example.application.crud.dto.users.TeacherDTO;
 import com.example.application.crud.model.User;
 import com.example.application.crud.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.security.Principal;
 import java.util.Optional;
@@ -26,11 +29,16 @@ public class UserController {
     }
 
     @GetMapping("/teachers")
-    public String getTeachers(Model model, Principal principal) {
+    public String getTeachersPage(Model model, Principal principal) {
         List<User> teachers = userService.getUsers("teacher");
         model.addAttribute("teachers", teachers);
 
         return "users/teachers/list";
+    }
+
+    @GetMapping("/teachers/create")
+    public String createTeacherPage(@Valid TeacherDTO teacherDTO, BindingResult result) {
+        return "users/teachers/create";
     }
 
     @GetMapping("/users/{id}")
@@ -47,8 +55,12 @@ public class UserController {
     }
 
     @PostMapping(path = "/teachers")
-    public void createTeacher(@RequestBody User user){
-        userService.createTeacher(user);
+    public String createTeacher(TeacherDTO teacherDTO, BindingResult result, Model model){
+        if (result.hasErrors()) {
+            return "users/teachers/create";
+        }
+        userService.createTeacher(teacherDTO);
+        return "redirect:/users/teachers/list";
     }
 
 //    @PutMapping(path = "/students")
