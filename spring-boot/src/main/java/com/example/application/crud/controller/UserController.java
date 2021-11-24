@@ -2,23 +2,17 @@ package com.example.application.crud.controller;
 
 import com.example.application.crud.model.User;
 import com.example.application.crud.service.UserService;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.security.Principal;
 import java.util.Optional;
 
-@Validated
 @Controller
 public class UserController {
-    @Autowired
-    ModelMapper modelMapper;
-
     @Autowired
     private UserService userService;
 
@@ -26,6 +20,7 @@ public class UserController {
     public String getStudents(Model model, Principal principal) {
         List<User> students = userService.getUsers("student");
         model.addAttribute("students", students);
+        System.out.println(students);
 
         return "users/students/list";
     }

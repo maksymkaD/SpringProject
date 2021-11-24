@@ -1,4 +1,4 @@
-package com.example.application.auth;
+package com.example.application.security.transport;
 
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.GenericFilterBean;
@@ -10,11 +10,10 @@ import javax.servlet.ServletResponse;
 import java.io.IOException;
 
 @Component
-public class CustomFilter extends GenericFilterBean {
+public class RequestFilter extends GenericFilterBean {
 
     @Override
-    public void doFilter( ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-
+    public void doFilter( ServletRequest request, ServletResponse response, FilterChain chain) throws ServletException, IOException {
         System.out.println("Remote Host:"+request.getRemoteHost());
         System.out.println("Remote Address:"+request.getRemoteAddr());
         chain.doFilter(request, response);
