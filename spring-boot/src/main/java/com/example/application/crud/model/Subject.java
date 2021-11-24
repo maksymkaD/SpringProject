@@ -1,4 +1,4 @@
-package com.example.application.model;
+package com.example.application.crud.model;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -8,6 +8,9 @@ import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+
+import com.example.application.crud.model.User;
+
 import java.util.Set;
 
 @Validated
@@ -33,27 +36,25 @@ public class Subject {
         this.cathedraId = cathedraId;
     }
 
-    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "subjects")
-    private Set<Teacher> teachers;
-
-    public Set<Teacher> getTeachers() {
-        return teachers;
-    }
-
-    public void setTeachers(Set<Teacher> teachers) {
-        this.teachers = teachers;
-    }
-
-    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "subjects")
-    private Set<Student> students;
-
-    public Set<Student> getStudents() {
-        return students;
-    }
-
-    public void setStudents(Set<Student> students) {
-        this.students = students;
-    }
-
-
+//    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "users")
+//    private Set<User> teachers;
+//
+//    public Set<User> getTeachers() {
+//        return teachers;
+//    }
+//
+//    public void setTeachers(Set<User> teachers) {
+//        this.teachers = teachers;
+//    }
+//
+//    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "users")
+//    private Set<User> students;
+//
+//    public Set<User> getStudents() {
+//        return students;
+//    }
+//
+//    public void setStudents(Set<User> students) {
+//        this.students = students;
+//    }
 }

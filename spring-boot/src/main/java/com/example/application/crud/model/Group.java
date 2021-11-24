@@ -1,4 +1,4 @@
-package com.example.application.model;
+package com.example.application.crud.model;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -13,33 +13,33 @@ import java.util.Set;
 @Getter
 @Setter
 @Entity
-@Table(name = "st_groups")
-public class StGroup {
+@Table(name = "student")
+public class Group {
 
     @Id @PrimaryKeyJoinColumn @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer id;
     @Column(name = "subject_id")  @NotNull
     private Integer subjectId;
 
-    public StGroup() {
+    public Group() {
     }
 
-    public StGroup(@Valid  Integer id, Integer subjectId) {
+    public Group(@Valid  Integer id, Integer subjectId) {
         this.id = id;
         this.subjectId = subjectId;
     }
 
-
-    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "st_groups")
-    private Set<Student> students;
-
-    public Set<Student> getStudents() {
-        return students;
-    }
-
-    public void setStudents(Set<Student> students) {
-        this.students = students;
-    }
+//
+//    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "users")
+//    private Set<User> students;
+//
+//    public Set<User> getStudents() {
+//        return students;
+//    }
+//
+//    public void setStudents(Set<User> students) {
+//        this.students = students;
+//    }
 
 
 }

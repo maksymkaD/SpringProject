@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  <h1>List teachers</h1>
+  <div th:switch="${teachers}">
+      <h2 th:case="null">No teachers yet!</h2>
+      <div th:case="*">
+          <h2>teachers</h2>
+          <table>
+              <thead>
+              <tr>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Edit</th>
+                  <th>Delete</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr th:each="teacher : ${teachers}">
+                  <td th:text="${teacher.firstName}"></td>
+                  <td th:text="${teacher.email}"></td>
+                  <td><a th:href="@{/edit/{id}(id=${teacher.id})}">Edit</a></td>
+                  <td><a th:href="@{/delete/{id}(id=${teacher.id})}">Delete</a></td>
+              </tr>
+              </tbody>
+          </table>
+      </div>
+      <p><a href="/signup">Add a new teacher</a></p>
+  </div>
+</body>
+</html>

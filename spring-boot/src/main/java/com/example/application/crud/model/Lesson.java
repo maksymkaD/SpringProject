@@ -1,23 +1,19 @@
-package com.example.application.model;
+package com.example.application.crud.model;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.sql.Update;
 import org.springframework.validation.annotation.Validated;
 
 import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import java.sql.Date;
-import java.time.LocalDateTime;
-import java.util.Set;
 
 @Getter
 @Setter
 @Entity
 @Validated
-@Table(name = "Lessons")
+@Table(name = "lessons")
 public class Lesson {
     @Id
     @PrimaryKeyJoinColumn @GeneratedValue(strategy=GenerationType.IDENTITY) @NotNull
@@ -33,13 +29,6 @@ public class Lesson {
     @Column(name = "type") @NotEmpty
     private String type; // lecture | practice
 
-    @ManyToOne
-    @JoinTable(name="subject_lesson",
-            joinColumns = @JoinColumn(name="lesson_id", referencedColumnName="id"),
-            inverseJoinColumns = @JoinColumn(name="subject_id", referencedColumnName="id")
-    )
-    private Subject subject;
-
     public Lesson() {
     }
 
@@ -52,4 +41,12 @@ public class Lesson {
         this.type = type;
     }
 
+    @ManyToOne
+    @JoinTable(
+            name="subject_lesson",
+            joinColumns = @JoinColumn(name="lesson_id", referencedColumnName="id"),
+            inverseJoinColumns = @JoinColumn(name="subject_id", referencedColumnName="id")
+    )
+
+    private Subject subject;
 }

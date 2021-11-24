@@ -1,11 +1,7 @@
 package com.example.application.db;
 
-import java.lang.reflect.Array;
 import java.sql.*;
 import java.util.Arrays;
-
-import com.example.application.model.*;
-import javax.persistence.*;
 
 public class DbQueries {
 

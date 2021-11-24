@@ -1,4 +1,4 @@
-package com.example.application.dto;
+package com.example.application.crud.dto;
 
 import lombok.Getter;
 import lombok.Setter;

@@ -1,4 +1,4 @@
-package com.example.application.controller;
+package com.example.application.crud.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
