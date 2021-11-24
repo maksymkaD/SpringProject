@@ -1,8 +1,7 @@
 package com.example.application.auth;
 
 enum Roles {
-    ADMIN("ADMIN"),
-    USER("USER");
+    ADMIN("ADMIN"),STUDENT("STUDENT"), TEACHER("TEACHER");
 
     private final String role;
 

@@ -27,10 +27,6 @@ public class Application {
 		st.executeUpdate("INSERT INTO st_groups (subject_id) VALUES (1)");
 		st.executeUpdate("INSERT INTO lessons (subject_id, group_id, teacher_id, date, type) " +
 				"VALUES (1, 1, 1, '2020-05-01 12:30:00', 'lecture')");
-		st.executeUpdate("INSERT INTO students (email, password, last_name, first_name, year_of_study) " +
-				"VALUES ('student@ukma.edu.ua','1','Johnson','Petro',4)");
-		st.executeUpdate("INSERT INTO teachers (email, password, last_name, first_name, position) " +
-				"VALUES ('teacher@ukma.edu.ua','1','McCaine','Dmytro','Professor')");
 		st.executeUpdate("INSERT INTO subjects (name, cathedra_name, cathedra_id) VALUES ('Databases','Informatics',10)");
 
 		//Add student with DbQueries

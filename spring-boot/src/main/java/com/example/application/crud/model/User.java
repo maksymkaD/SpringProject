@@ -40,6 +40,7 @@ public class User {
     @Column (name = "position")
     private String position;
 
+
     public User() {}
 
     // student constructor
