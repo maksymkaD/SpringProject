@@ -1,8 +1,8 @@
-package com.example.application.security.auth;
+package com.example.application.security;
 
 import java.util.*;
 
-import com.example.application.crud.model.User;
+import com.example.application.dal.model.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -19,18 +19,22 @@ public class MyUserDetails implements UserDetails {
 
         List<SimpleGrantedAuthority> authorities = new ArrayList<>();
 
+        SimpleGrantedAuthority admin = new SimpleGrantedAuthority("admin");
+        SimpleGrantedAuthority teacher = new SimpleGrantedAuthority("teacher");
+        SimpleGrantedAuthority student = new SimpleGrantedAuthority("student");
+
         if (Objects.equals(this.user.getRole(), "teacher")) {
-            authorities.add(new SimpleGrantedAuthority("teacher"));
+            authorities.add(teacher);
         }
 
         if (Objects.equals(this.user.getRole(), "student")) {
-            authorities.add(new SimpleGrantedAuthority("student"));
+            authorities.add(student);
         }
 
         if (Objects.equals(this.user.getRole(), "admin")) {
-            authorities.add(new SimpleGrantedAuthority("student"));
-            authorities.add(new SimpleGrantedAuthority("admin"));
-            authorities.add(new SimpleGrantedAuthority("teacher"));
+            authorities.add(admin);
+            authorities.add(teacher);
+            authorities.add(student);
         }
 
         return authorities;

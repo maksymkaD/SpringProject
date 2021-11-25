@@ -1,8 +1,7 @@
-package com.example.application.crud.service;
+package com.example.application.service.user;
 
-import com.example.application.crud.dto.TeacherDTO;
-import com.example.application.crud.model.User;
-import com.example.application.crud.repository.UserRepository;
+import com.example.application.dal.model.User;
+import com.example.application.dal.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,14 +22,6 @@ public class UserService {
 
     public Optional<User> getUser(int id) {
         return userRepository.findById(id);
-    }
-
-    public void createStudent(User user) { userRepository.save(user); }
-
-    public void createTeacher(TeacherDTO teacherDTO) {
-        User teacher = new User(teacherDTO.getEmail(), teacherDTO.getPassword(), teacherDTO.getName(),
-                "teacher", teacherDTO.getPosition());
-        userRepository.save(teacher);
     }
 
     public void updateUser(User user) { userRepository.save(user); }

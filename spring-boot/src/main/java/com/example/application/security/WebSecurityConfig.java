@@ -1,4 +1,4 @@
-package com.example.application.security.auth;
+package com.example.application.security;
 
 import org.springframework.context.annotation.*;
 import org.springframework.security.authentication.dao.*;
@@ -6,7 +6,6 @@ import org.springframework.security.config.annotation.authentication.builders.*;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.*;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Configuration
 @EnableWebSecurity
@@ -18,7 +17,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
-    public MyPasswordEncoder passwordEncoderEmpty() {
+    public MyPasswordEncoder passwordEncoder() {
         return new MyPasswordEncoder();
     }
 
@@ -26,7 +25,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public DaoAuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
         authProvider.setUserDetailsService(userDetailsService());
-        authProvider.setPasswordEncoder(passwordEncoderEmpty());
+        authProvider.setPasswordEncoder(passwordEncoder());
 
         return authProvider;
     }

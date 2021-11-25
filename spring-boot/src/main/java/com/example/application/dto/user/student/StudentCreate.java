@@ -1,14 +1,14 @@
-package com.example.application.crud.dto;
+package com.example.application.dto.user.student;
 
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class TeacherDTO {
-    private Integer id;
+public class StudentCreate {
     private String email;
     private String password;
     private String name;
-    private String position;
+    private String lastName;
+    private String year;
 }

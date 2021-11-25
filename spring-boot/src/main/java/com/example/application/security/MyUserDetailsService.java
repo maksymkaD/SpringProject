@@ -1,7 +1,7 @@
-package com.example.application.security.auth;
+package com.example.application.security;
 
-import com.example.application.crud.model.User;
-import com.example.application.crud.repository.UserRepository;
+import com.example.application.dal.model.User;
+import com.example.application.dal.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

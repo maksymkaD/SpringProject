@@ -1,9 +1,7 @@
-package com.example.application.crud.repository;
+package com.example.application.dal.repository;
 
-import com.example.application.crud.model.User;
+import com.example.application.dal.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
-
-
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
