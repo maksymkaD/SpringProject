@@ -16,7 +16,12 @@ public class RequestFilter extends GenericFilterBean {
     public void doFilter( ServletRequest request, ServletResponse response, FilterChain chain) throws ServletException, IOException {
         System.out.println("Remote Host:"+request.getRemoteHost());
         System.out.println("Remote Address:"+request.getRemoteAddr());
+
+        /*
+            DON`T remove this line
+         */
         chain.doFilter(request, response);
+
         System.out.println("Response content type:"+response.getContentType());
         System.out.println("Response encoding:"+response.getCharacterEncoding());
     }
