@@ -18,4 +18,14 @@ public interface UserRepository extends JpaRepository<User, Integer> {
             value = "SELECT * FROM users WHERE users.email = ?1",
             nativeQuery = true)
     User getByEmail(String email);
+
+    @Query(
+            value = "SELECT * FROM users WHERE users.name = ?1",
+            nativeQuery = true)
+    User getByName(String name);
+
+    @Query(
+            value = "SELECT * FROM users WHERE users.lastName = ?1",
+            nativeQuery = true)
+    User getByLastName(String lastName);
 }

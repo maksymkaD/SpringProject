@@ -18,12 +18,12 @@ public class UserController {
     public String getUser(@PathVariable("id") int id, Model model) {
         Optional<User> user = userService.getUser(id);
         model.addAttribute("user", user);
-
         return "home";
     }
 
     @DeleteMapping("/users/{id}")
-    public void deleteStudent(@PathVariable("id") int id) {
+    public String deleteUser(@PathVariable("id") int id) {
         userService.deleteUser(id);
+        return "home";
     }
 }

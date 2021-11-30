@@ -15,7 +15,7 @@ public class StudentService {
     UserRepository userRepository;
 
     public void createStudent(StudentCreate studentCreate) {
-        User teacher = new User(
+        User student = new User(
                 studentCreate.getEmail(),
                 studentCreate.getPassword(),
                 studentCreate.getName(),
@@ -24,6 +24,6 @@ public class StudentService {
                 studentCreate.getYear()
         );
 
-        userRepository.save(teacher);
+        userRepository.save(student);
     }
 }

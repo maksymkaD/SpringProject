@@ -1,11 +1,14 @@
 package com.example.application.security;
 
+import org.hibernate.annotations.common.reflection.XMethod;
 import org.springframework.context.annotation.*;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.dao.*;
 import org.springframework.security.config.annotation.authentication.builders.*;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.*;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 
 @Configuration
 @EnableWebSecurity
@@ -37,16 +40,18 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        http.addFilterAfter(new CustomFilter(), BasicAuthenticationFilter.class);
         http.authorizeRequests()
                 .antMatchers("/teachers*").hasAnyAuthority("admin", "teacher")
                 .antMatchers("/students").hasAnyAuthority("admin", "teacher", "student")
+                .antMatchers(HttpMethod.DELETE).hasAnyAuthority("admin", "teacher")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin().permitAll()
                 .and()
                 .logout().permitAll()
                 .and()
-                .exceptionHandling().accessDeniedPage("/403")
-        ;
+                .exceptionHandling().accessDeniedPage("/403");
+        http.csrf().disable();
     }
 }

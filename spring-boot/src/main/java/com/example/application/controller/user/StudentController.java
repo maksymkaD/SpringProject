@@ -11,10 +11,16 @@ public class StudentController {
     @Autowired
     private StudentService studentService;
 
+//    @GetMapping(path = "/students")
+//    public String getStudents(){
+//        return "home";
+//    }
+
     @PostMapping(path = "/students")
-    public String createTeacher(StudentCreate studentCreate){
+    public String createStudent(StudentCreate studentCreate){
         studentService.createStudent(studentCreate);
 
         return "home";
     }
+
 }
