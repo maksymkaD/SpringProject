@@ -18,9 +18,7 @@ public class TeacherController {
         if (result.hasErrors()) {
             return "users/teachers/create";
         }
-
         teacherService.createTeacher(teacherCreate);
-
         return "redirect:/teachers/create";
     }
 }
