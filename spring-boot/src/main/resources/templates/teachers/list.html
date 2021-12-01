@@ -26,13 +26,12 @@
                   <td th:text="${teacher.email}"></td>
                   <td th:text="${teacher.position}"></td>
 
-                  <td><a th:href="@{/edit/{id}(id=${teacher.id})}">Edit</a></td>
-                  <td><a th:href="@{/delete/{id}(id=${teacher.id})}">Delete</a></td>
+                  <td><a th:href="@{/teachers/{id}/update(id=${teacher.id})}">Edit</a></td>
               </tr>
               </tbody>
           </table>
       </div>
-      <p><a href="/signup">Add a new teacher</a></p>
+      <p><a href="/teachers/create">Add a new teacher</a></p>
   </div>
 </body>
 </html>

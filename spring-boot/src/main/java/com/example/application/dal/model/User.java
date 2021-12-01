@@ -6,7 +6,7 @@ import org.springframework.validation.annotation.Validated;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotBlank;
 import java.util.Set;
 
 @Validated
@@ -19,22 +19,22 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column (name = "email") @Email
+    @Column (name = "email") @NotBlank
     private String email;
 
-    @Column (name = "password") @NotEmpty
+    @Column (name = "password") @NotBlank
     private String password;
 
-    @Column (name = "name") @NotEmpty
+    @Column (name = "name") @NotBlank
     private String name;
 
-    @Column (name = "lastName") @NotEmpty
+    @Column (name = "lastName") @NotBlank
     private String lastName;
 
     /*
         admin, teacher, student
      */
-    @Column (name = "role") @NotEmpty
+    @Column (name = "role") @NotBlank
     private String role;
 
     public User() {}

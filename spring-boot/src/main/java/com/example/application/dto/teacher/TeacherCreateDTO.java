@@ -2,27 +2,26 @@ package com.example.application.dto.teacher;
 
 import lombok.Getter;
 import lombok.Setter;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 
 
 @Getter
 @Setter
-public class TeacherCreate {
-    @NotNull
+public class TeacherCreateDTO {
+    @NotBlank
     private String email;
 
-    @NotNull
+    @NotBlank
     private String password;
 
-    @NotNull
-    @Size(min=2, max=30)
+    @NotBlank
     private String name;
 
-    @NotNull
+    @NotBlank
     private String lastName;
 
-    @NotNull
+    @NotBlank
     private String position;
 }

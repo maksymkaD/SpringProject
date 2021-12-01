@@ -40,13 +40,25 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/teachers*").hasAnyAuthority("admin", "teacher")
                 .antMatchers("/students").hasAnyAuthority("admin", "teacher", "student")
-                .anyRequest().authenticated()
+                .antMatchers("/").hasAnyAuthority("admin", "teacher", "student")
+                .anyRequest()
+                .authenticated()
                 .and()
-                .formLogin().permitAll()
-                .and()
-                .logout().permitAll()
-                .and()
-                .exceptionHandling().accessDeniedPage("/403")
-        ;
+                .formLogin()
+                .permitAll();
+
+//        http
+//                .authorizeRequests()
+//                .antMatchers("/teachers*").hasAnyAuthority("admin", "teacher")
+//                .antMatchers("/students").hasAnyAuthority("admin", "teacher", "student")
+//                .anyRequest()
+//                .authenticated()
+//                .and()
+//                .formLogin().permitAll()
+//                .and()
+//                .logout().permitAll()
+//                .and()
+//                .exceptionHandling().accessDeniedPage("/403")
+//        ;
     }
 }

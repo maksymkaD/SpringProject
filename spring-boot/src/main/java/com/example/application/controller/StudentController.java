@@ -1,7 +1,7 @@
 package com.example.application.controller;
 
 import com.example.application.dal.model.User;
-import com.example.application.dto.student.StudentCreate;
+import com.example.application.dto.student.StudentCreateDTO;
 import com.example.application.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -33,8 +33,8 @@ public class StudentController {
     }
 
     @PostMapping(path = "/students")
-    public String createStudent(StudentCreate studentCreate){
-        studentService.createStudent(studentCreate);
+    public String createStudent(StudentCreateDTO studentDTO){
+        studentService.createStudent(studentDTO);
 
         return "home";
     }

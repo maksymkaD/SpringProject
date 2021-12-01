@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Teacher</title>
+</head>
+<body>
+<form action="#" th:action="@{/teachers/${teacher.id}/update}" th:object="${teacherUpdateDTO}" method="post">
+    <table>
+        <tr>
+            <td>Id:</td>
+            <td><input type="text" th:field="*{id}" th:placeholder="${teacher.name}"/></td>
+            <td th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</td>
+        </tr>
+        <tr>
+            <td>Name:</td>
+            <td><input type="text" th:field="*{name}" th:placeholder="${teacher.name}"/></td>
+            <td th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</td>
+        </tr>
+        <tr>
+            <td>lastName</td>
+            <td><input type="text" th:field="*{lastName}" id="lastName" th:placeholder="${teacher.lastName}"></td>
+            <td th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">lastName Error</td>
+        </tr>
+        <tr>
+            <td>email</td>
+            <td><input type="text" th:field="*{email}" id="email" th:placeholder="${teacher.email}"></td>
+            <td th:if="${#fields.hasErrors('email')}" th:errors="*{email}">email Error</td>
+        </tr>
+        <tr>
+            <td>password</td>
+            <td><input type="text" th:field="*{password}" id="password" th:placeholder="${teacher.password}"></td>
+            <td th:if="${#fields.hasErrors('password')}" th:errors="*{password}">password Error</td>
+        </tr>
+        <tr>
+            <td>position</td>
+            <td><input type="text" th:field="*{position}" id="position" th:placeholder="${teacher.position}"></td>
+            <td th:if="${#fields.hasErrors('position')}" th:errors="*{position}">position Error</td>
+        </tr>
+        <tr>
+            <td><button type="submit">Submit</button></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

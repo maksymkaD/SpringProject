@@ -2,16 +2,13 @@ package com.example.application.service;
 
 import com.example.application.dal.model.User;
 import com.example.application.dal.repository.UserRepository;
-import com.example.application.dto.student.StudentCreate;
+import com.example.application.dto.student.StudentCreateDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
-/**
- * Field Injection
- */
 @Service
 public class StudentService {
     @Autowired
@@ -25,14 +22,14 @@ public class StudentService {
         return userRepository.findById(id);
     }
 
-    public void createStudent(StudentCreate studentCreate) {
+    public void createStudent(StudentCreateDTO studentDTO) {
         User teacher = new User(
-                studentCreate.getEmail(),
-                studentCreate.getPassword(),
-                studentCreate.getName(),
-                studentCreate.getLastName(),
+                studentDTO.getEmail(),
+                studentDTO.getPassword(),
+                studentDTO.getName(),
+                studentDTO.getLastName(),
                 "student",
-                studentCreate.getYear()
+                studentDTO.getYear()
         );
 
         userRepository.save(teacher);
