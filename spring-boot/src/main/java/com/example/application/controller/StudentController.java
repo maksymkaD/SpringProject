@@ -1,8 +1,8 @@
-package com.example.application.controller.user;
+package com.example.application.controller;
 
 import com.example.application.dal.model.User;
-import com.example.application.dto.user.student.StudentCreate;
-import com.example.application.service.user.StudentService;
+import com.example.application.dto.student.StudentCreate;
+import com.example.application.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,28 +18,28 @@ public class StudentController {
 
     @GetMapping("/students")
     public String getStudents(Model model) {
-        List<User> students = userService.getUsers("student");
+        List<User> students = studentService.getStudents();
         model.addAttribute("students", students);
 
-        return "users/students/list";
+        return "students/list";
     }
 
-    @GetMapping("/users/{id}")
-    public String getUser(@PathVariable("id") int id, Model model) {
-        Optional<User> student = studentService.getStudent(id);
+    @GetMapping("/students/{id}")
+    public String getStudent(@PathVariable("id") int id, Model model) {
+        Optional<User> student = studentService.getStudentById(id);
         model.addAttribute("student", student);
 
         return "students/details";
     }
 
     @PostMapping(path = "/students")
-    public String createTeacher(StudentCreate studentCreate){
+    public String createStudent(StudentCreate studentCreate){
         studentService.createStudent(studentCreate);
 
         return "home";
     }
 
-    @DeleteMapping("/users/{id}")
+    @DeleteMapping("/students/{id}")
     public void deleteStudent(@PathVariable("id") int id) {
         studentService.deleteStudent(id);
     }
