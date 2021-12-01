@@ -16,7 +16,7 @@ public class TeacherController {
     @PostMapping(path = "/teachers")
     public String createTeacher(TeacherCreate teacherCreate, BindingResult result, Model model){
         if (result.hasErrors()) {
-            return "users/teachers/create";
+            return "teachers/create";
         }
 
         teacherService.createTeacher(teacherCreate);
