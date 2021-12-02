@@ -2,6 +2,7 @@ package com.example.application.controller;
 
 import com.example.application.model.Student;
 import com.example.application.service.StudentService;
+import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.modelmapper.ModelMapper;
@@ -24,7 +25,7 @@ public class StudentController {
     }
 
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Got all students"),
+            @ApiResponse(responseCode = "200", description = "Got all students", content = @Content),
             @ApiResponse(responseCode = "404", description = "Not found"),
             @ApiResponse(responseCode = "500", description = "Internal server error")
     })
@@ -34,7 +35,7 @@ public class StudentController {
     }
 
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Got student"),
+            @ApiResponse(responseCode = "200", description = "Got student", content = @Content),
             @ApiResponse(responseCode = "404", description = "Student not found"),
             @ApiResponse(responseCode = "500", description = "Internal server error")
     })
@@ -44,7 +45,7 @@ public class StudentController {
     }
 
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "201", description = "Student created"),
+            @ApiResponse(responseCode = "201", description = "Student created", content = @Content),
             @ApiResponse(responseCode = "500", description = "Internal server error")
     })
     @PostMapping(path = "/students")
@@ -52,6 +53,10 @@ public class StudentController {
         return studentService.createStudent(student);
     }
 
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "201", description = "Student updated"),
+            @ApiResponse(responseCode = "500", description = "Internal server error")
+    })
     @PatchMapping(path = "/students")
     public void updateStudent(@RequestBody Student student){
         studentService.updateStudent(student);
