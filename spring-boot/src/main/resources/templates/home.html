@@ -6,5 +6,10 @@
 </head>
 <body>
     Auth Home page
+    <div th:switch="${user.role}">
+        <p th:case="'admin'">User is an administrator</p>
+        <p th:case="'teacher'">User is a teacher</p>
+        <p th:case="'student'">User is student</p>
+    </div>
 </body>
 </html>
