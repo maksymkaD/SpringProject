@@ -52,6 +52,11 @@ public class StudentController {
         return studentService.createStudent(student);
     }
 
+    @PatchMapping(path = "/students")
+    public void updateStudent(@RequestBody Student student){
+        studentService.updateStudent(student);
+    }
+
     @ApiResponses(value = {
             @ApiResponse(responseCode = "201", description = "Student deleted"),
             @ApiResponse(responseCode = "500", description = "Internal server error")

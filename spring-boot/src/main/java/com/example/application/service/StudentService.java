@@ -46,6 +46,16 @@ public class StudentService {
         return new ResponseEntity<>(student, HttpStatus.CREATED);
     }
 
+    public void updateStudent(Student student) {
+        Student local_student = studentRepository.getById(student.getId());
+        local_student.setEmail(student.getEmail());
+        local_student.setFacultyId(student.getFacultyId());
+        local_student.setPassword(student.getPassword());
+        local_student.setFirstName(student.getFirstName());
+        local_student.setLastName(student.getLastName());
+        studentRepository.save(student);
+    }
+
     public void deleteStudent(Student student) { studentRepository.delete(student); }
 
 }
