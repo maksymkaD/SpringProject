@@ -57,9 +57,9 @@ public class StudentController {
             @ApiResponse(responseCode = "201", description = "Student updated"),
             @ApiResponse(responseCode = "500", description = "Internal server error")
     })
-    @PatchMapping(path = "/students")
-    public void updateStudent(@RequestBody Student student){
-        studentService.updateStudent(student);
+    @PutMapping(path = "/students")
+    public ResponseEntity<Object> updateStudent(@RequestBody Student student){
+        return studentService.updateStudent(student);
     }
 
     @ApiResponses(value = {
