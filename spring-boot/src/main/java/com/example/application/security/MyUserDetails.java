@@ -33,8 +33,6 @@ public class MyUserDetails implements UserDetails {
 
         if (Objects.equals(this.user.getRole(), "admin")) {
             authorities.add(admin);
-            authorities.add(teacher);
-            authorities.add(student);
         }
 
         return authorities;

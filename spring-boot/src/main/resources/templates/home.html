@@ -1,15 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+<head lang="en" th:replace="fragments/head :: head"></head>
+<header lang="en" th:replace="fragments/header :: header"></header>
 <body>
-    Auth Home page
     <div th:switch="${user.role}">
-        <p th:case="'admin'">User is an administrator</p>
-        <p th:case="'teacher'">User is a teacher</p>
-        <p th:case="'student'">User is student</p>
+        <div th:case="'admin'">
+            <h1> Hello Admin</h1>
+        </div>
+        <div th:case="'teacher'">
+            Hello teacher
+            <a th:href="@{/teachers/subjects}">My Teacher Subjects</a>
+            <a th:href="@{/teachers/subjects}">My Teacher Lessons</a>
+        </div>
+        <div th:case="'student'">
+            Hello student
+            <a th:href="@{/students/subjects}">My Student Subjects</a>
+            <a th:href="@{/students/subjects}">My Student Lessons</a>
+        </div>
     </div>
 </body>
+<footer lang="en" th:replace="fragments/bot :: bot"></footer>
 </html>

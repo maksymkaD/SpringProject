@@ -68,16 +68,16 @@ public class TeacherService {
             teacherToUpdate.setEmail(email);
         }
         if (!name.isEmpty()) {
-            teacherToUpdate.setEmail(name);
+            teacherToUpdate.setName(name);
         }
         if (!password.isEmpty()) {
-            teacherToUpdate.setEmail(password);
+            teacherToUpdate.setPassword(password);
         }
         if (!lastName.isEmpty()) {
-            teacherToUpdate.setEmail(lastName);
+            teacherToUpdate.setLastName(lastName);
         }
         if (!position.isEmpty()) {
-            teacherToUpdate.setEmail(position);
+            teacherToUpdate.setPosition(position);
         }
 
 

@@ -29,31 +29,9 @@ public class TeacherController {
         return "teachers/list";
     }
 
-    @GetMapping("/teachers/{id}")
-    public String getTeacherPage(@PathVariable("id") int id, Model model) {
-        Optional<User> teacher = teacherService.getTeacherById(id);
-
-        model.addAttribute("teacher", teacher);
-
-        return "teachers/detail";
-    }
-
     @GetMapping("/teachers/create")
-    public String createTeacherPage(TeacherCreateDTO teacherCreateDTO) {
+    public String getCreateTeacherPage(TeacherCreateDTO teacherCreateDTO) {
         return "teachers/create";
-    }
-
-    @GetMapping("/teachers/{id}/update")
-    public String updateTeacherPage(@PathVariable Integer id, TeacherUpdateDTO teacherUpdateDTO, Model model) {
-        Optional<User> teacher = teacherService.getTeacherById(id);
-
-        if (!teacher.isPresent()) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Teacher not found");
-        }
-
-        model.addAttribute("teacher", teacher.get());
-
-        return "teachers/update";
     }
 
     @PostMapping(path = "/teachers/create")
@@ -67,10 +45,23 @@ public class TeacherController {
         List<User> teachers = teacherService.getTeachers();
         model.addAttribute("teachers", teachers);
 
-        return "teachers/list";
+        return "redirect:/teachers";
     }
 
-    @PostMapping(path = "/teachers/update")
+    @GetMapping("/teachers/update/{id}")
+    public String getUpdateTeacherPage(@PathVariable Integer id, TeacherUpdateDTO teacherUpdateDTO, Model model) {
+        Optional<User> teacher = teacherService.getTeacherById(id);
+
+        if (!teacher.isPresent()) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Teacher not found");
+        }
+
+        model.addAttribute("teacher", teacher.get());
+
+        return "teachers/update";
+    }
+
+    @PostMapping(path = "/teachers/update/{id}")
     public String updateTeacher(@PathVariable("id") int id, @Valid TeacherUpdateDTO teacherUpdateDTO, BindingResult result, Model model){
         if (result.hasErrors()) {
             Optional<User> teacher = teacherService.getTeacherById(id);
@@ -89,11 +80,16 @@ public class TeacherController {
         List<User> teachers = teacherService.getTeachers();
         model.addAttribute("teachers", teachers);
 
-        return "teachers/list";
+        return "redirect:/teachers";
     }
 
-    @DeleteMapping("/teachers/{id}")
-    public void deleteTeacher(@PathVariable("id") int id) {
+    @GetMapping("/teachers/delete/{id}")
+    public String deleteTeacher(@PathVariable("id") int id, Model model) {
         teacherService.deleteTeacher(id);
+
+        List<User> teachers = teacherService.getTeachers();
+        model.addAttribute("teachers", teachers);
+
+        return "redirect:/teachers";
     }
 }

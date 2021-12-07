@@ -3,35 +3,35 @@
 <head lang="en" th:replace="fragments/head :: head"></head>
 <header lang="en" th:replace="fragments/header :: header"></header>
 <body>
-<form action="#" th:action="@{/teachers/update/{id}(id=${teacher.id})}" th:object="${teacherUpdateDTO}" method="post">
+<form action="#" th:action="@{/students/update/{id}(id=${student.id})}" th:object="${studentUpdateDTO}" method="post">
     <div class="mb-3">
         <label class="form-label">Name:</label>
-        <input class="form-control" type="text" th:field="*{name}" th:placeholder="${teacher.name}"/>
+        <input class="form-control" type="text" th:field="*{name}" th:placeholder="${student.name}"/>
         <div class="form-text" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</div>
     </div>
 
     <div class="mb-3">
         <label class="form-label">lastName</label>
-        <input class="form-control" type="text" th:field="*{lastName}" id="lastName" th:placeholder="${teacher.lastName}">
+        <input class="form-control" type="text" th:field="*{lastName}" id="lastName" th:placeholder="${student.lastName}">
         <div class="form-text" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">lastName Error</div>
     </div>
 
     <div class="mb-3">
         <label class="form-label">email</label>
-        <input class="form-control" type="text" th:field="*{email}" id="email" th:placeholder="${teacher.email}">
+        <input class="form-control" type="text" th:field="*{email}" id="email" th:placeholder="${student.email}">
         <div class="form-text" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">email Error</div>
     </div>
 
     <div class="mb-3">
         <label class="form-label">password</label>
-        <input class="form-control" type="text" th:field="*{password}" id="password" th:placeholder="${teacher.password}">
+        <input class="form-control" type="text" th:field="*{password}" id="password" th:placeholder="${student.password}">
         <div class="form-text" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">password Error</div>
     </div>
 
     <div class="mb-3">
-        <label class="form-label">position</label>
-        <input class="form-control" type="text" th:field="*{position}" id="position" th:placeholder="${teacher.position}">
-        <div class="form-text" th:if="${#fields.hasErrors('position')}" th:errors="*{position}">position Error</div>
+        <label class="form-label">year</label>
+        <input class="form-control" type="text" th:field="*{year}" id="year" th:placeholder="${student.year}">
+        <div class="form-text" th:if="${#fields.hasErrors('year')}" th:errors="*{year}">year Error</div>
     </div>
 
     <label><button class="btn btn-success" type="submit">Submit</button></label>

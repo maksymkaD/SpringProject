@@ -1,6 +1,7 @@
 package com.example.application.security;
 
 import org.springframework.context.annotation.*;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.dao.*;
 import org.springframework.security.config.annotation.authentication.builders.*;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -38,28 +39,33 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/teachers*").hasAnyAuthority("admin", "teacher")
-                .antMatchers("/students").hasAnyAuthority("admin", "teacher", "student")
-                .antMatchers("/").hasAnyAuthority("admin", "teacher", "student")
-                .antMatchers("/download").hasAnyAuthority("admin", "teacher", "student")
+                .antMatchers(HttpMethod.GET, "/teachers").hasAnyAuthority("admin", "teacher", "student")
+                .antMatchers(HttpMethod.GET, "/teachers/create").hasAnyAuthority("admin")
+                .antMatchers(HttpMethod.POST, "/teachers/create").hasAnyAuthority("admin")
+                .antMatchers(HttpMethod.GET, "/teachers/update").hasAnyAuthority("admin")
+                .antMatchers(HttpMethod.POST, "/teachers/update").hasAnyAuthority("admin")
+                .antMatchers(HttpMethod.GET, "/teachers/delete").hasAnyAuthority("admin");
+
+        http.authorizeRequests()
+                .antMatchers(HttpMethod.GET, "/students").hasAnyAuthority("admin", "teacher", "student")
+                .antMatchers(HttpMethod.GET, "/students/create").hasAnyAuthority("admin")
+                .antMatchers(HttpMethod.POST, "/students/create").hasAnyAuthority("admin")
+                .antMatchers(HttpMethod.GET, "/students/update").hasAnyAuthority("admin")
+                .antMatchers(HttpMethod.POST, "/students/update").hasAnyAuthority("admin")
+                .antMatchers(HttpMethod.GET, "/students/delete").hasAnyAuthority("admin");
+
+        http.authorizeRequests()
+                .antMatchers(HttpMethod.GET, "/subjects").hasAnyAuthority("admin", "teacher", "student");
+
+        http.authorizeRequests()
+                .antMatchers(HttpMethod.GET, "/lessons").hasAnyAuthority("admin", "teacher", "student");
+
+        http.authorizeRequests()
+                .antMatchers(HttpMethod.GET, "/").hasAnyAuthority("admin", "teacher", "student")
                 .anyRequest()
                 .authenticated()
                 .and()
                 .formLogin()
                 .permitAll();
-
-//        http
-//                .authorizeRequests()
-//                .antMatchers("/teachers*").hasAnyAuthority("admin", "teacher")
-//                .antMatchers("/students").hasAnyAuthority("admin", "teacher", "student")
-//                .anyRequest()
-//                .authenticated()
-//                .and()
-//                .formLogin().permitAll()
-//                .and()
-//                .logout().permitAll()
-//                .and()
-//                .exceptionHandling().accessDeniedPage("/403")
-//        ;
     }
 }
