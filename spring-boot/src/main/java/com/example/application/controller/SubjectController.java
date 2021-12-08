@@ -1,12 +1,8 @@
 package com.example.application.controller;
 
 import com.example.application.dal.model.Subject;
-import com.example.application.dal.model.User;
-import com.example.application.dto.student.StudentCreateDTO;
-import com.example.application.dto.student.StudentUpdateDTO;
 import com.example.application.dto.subject.SubjectCreateDTO;
 import com.example.application.dto.subject.SubjectUpdateDTO;
-import com.example.application.service.StudentService;
 import com.example.application.service.SubjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
