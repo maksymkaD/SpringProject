@@ -1,24 +1,31 @@
 package com.example.application;
 
 
-import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.example.application.cache.ScheduleCacheManager;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.*;
+import org.springframework.cache.CacheManager;
+import org.springframework.cache.annotation.EnableCaching;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
-import java.sql.*;
+import static java.util.Arrays.asList;
 
 @Configuration
 @SpringBootApplication
 @EnableScheduling
+@EnableCaching
 public class Application {
-	public static void main(String[] args) throws Exception{
+	public static void main(String[] args) throws Exception {
 		SpringApplication.run(Application.class, args);
-        // Connection connection = DriverManager.getConnection ("jdbc:h2:mem:dev", "dev_name","dev_pass");
-		//seedDB(connection);
+	}
+
+	@Bean
+	public CacheManager cacheManager() {
+		ScheduleCacheManager cacheManager = new ScheduleCacheManager();
+		cacheManager.setCacheNames(asList("students", "teachers"));
+		return cacheManager;
 	}
 
 }
