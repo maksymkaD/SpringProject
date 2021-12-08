@@ -81,7 +81,7 @@ public class SubjectController {
         return "redirect:/subjects";
     }
 
-    @GetMapping("/students/delete/{id}")
+    @GetMapping("/subjects/delete/{id}")
     public String deleteSubject(@PathVariable("id") int id, Model model) {
         subjectService.deleteSubject(id);
 
