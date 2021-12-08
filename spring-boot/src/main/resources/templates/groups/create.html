@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en" th:replace="fragments/head :: head"></head>
+<header lang="en" th:replace="fragments/header :: header"></header>
+<body>
+<form action="#" th:action="@{/groups/create}" th:object="${groupCreateDTO}" method="post">
+    <div class="mb-3">
+        <label class="form-label">Subject Name:</label>
+        <input class="form-control" type="text" th:field="*{subjectName}" placeholder="Subject Name"/>
+        <div class="form-text" th:if="${#fields.hasErrors('subjectName')}" th:errors="*{subjectName}">Name Error</div>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Group Number</label>
+        <input class="form-control" type="text" th:field="*{number}" id="number" placeholder="number">
+        <div class="form-text" th:if="${#fields.hasErrors('number')}" th:errors="*{number}">Number Error</div>
+    </div>
+
+
+    <label><button class="btn btn-success" type="submit">Submit</button></label>
+</form>
+</body>
+<footer lang="en" th:replace="fragments/bot :: bot"></footer>
+</html>

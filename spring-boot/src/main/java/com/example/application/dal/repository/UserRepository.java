@@ -18,4 +18,6 @@ public interface UserRepository extends JpaRepository<User, Integer> {
             value = "SELECT * FROM users WHERE users.email = ?1",
             nativeQuery = true)
     User getByEmail(String email);
+
+
 }

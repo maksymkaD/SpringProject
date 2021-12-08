@@ -98,4 +98,6 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "subject_id")
     )
     Set<Subject> userSubjects;
+
+
 }

@@ -29,3 +29,13 @@ VALUES (1, 1);
 /* STUDENTS SUBJECTS */
 INSERT INTO user_subjects(user_id, subject_id)
 VALUES (2, 1);
+
+/*GROUPS*/
+INSERT INTO groups (id, subject, number)
+VALUES (11, 'Math', '1');
+INSERT INTO groups (id, subject, number)
+VALUES (12, 'OKA', '1');
+
+/* STUDENTS GROUPS */
+INSERT INTO user_groups(user_id, group_id)
+VALUES (3, 11);
