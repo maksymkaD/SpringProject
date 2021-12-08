@@ -32,7 +32,7 @@ public class SubjectController {
     }
 
     @GetMapping("/subjects/create")
-    public String getCreateSubjectPage() {
+    public String getCreateSubjectPage(SubjectCreateDTO subjectCreateDTO) {
         return "subjects/create";
     }
 
@@ -51,7 +51,7 @@ public class SubjectController {
     }
 
     @GetMapping("/subjects/update/{id}")
-    public String getUpdateSubjectPage(@PathVariable Integer id, Model model) {
+    public String getUpdateSubjectPage(@PathVariable Integer id, SubjectUpdateDTO subjectUpdateDTO, Model model) {
         Optional<Subject> subject = subjectService.getSubjectById(id);
 
         if (!subject.isPresent()) {
@@ -66,7 +66,7 @@ public class SubjectController {
     @PostMapping(path = "/subjects/update/{id}")
     public String updateSubject(@PathVariable("id") int id, @Valid SubjectUpdateDTO subjectUpdateDTO, BindingResult result, Model model){
         if (result.hasErrors()) {
-            return this.getUpdateSubjectPage(id, model);
+            return this.getUpdateSubjectPage(id, subjectUpdateDTO, model);
         }
 
         subjectService.updateSubject(id, subjectUpdateDTO);
