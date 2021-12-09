@@ -44,6 +44,10 @@ public class GroupService {
     {
         group.getGroupUsers().add(user.getUser());
     }
+    public void deleteStudentFromGroup (Group group, MyUserDetails user)
+    {
+        group.getGroupUsers().remove(user.getUser());
+    }
 
     public  Group getGroupById(int Id)
     {

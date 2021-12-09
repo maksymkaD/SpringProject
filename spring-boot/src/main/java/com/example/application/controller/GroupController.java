@@ -56,7 +56,7 @@ public class GroupController {
         return "redirect:/groups";
     }
 
-    @GetMapping("/groups/join/{id}")
+    @GetMapping("/groups/join/{id}")  // check This please
     public String joinGroup(@PathVariable("id") int id, Model model) {
         MyUserDetails user = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
@@ -68,7 +68,28 @@ public class GroupController {
         else
         {
             groupService.addStudetToGroup( groupService.getGroupById(id), user);
+            groupService.getGroupById(id).toString();
             System.out.println("Done");
+        }
+
+        List<Group> groups = groupService.getGroups();
+        model.addAttribute("groups", groups); //somewhere here
+
+        return "redirect:/groups";
+    }
+    @GetMapping("/groups/leave/{id}")  // check This please
+    public String leaveGroup(@PathVariable("id") int id, Model model) {
+        MyUserDetails user = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+
+        if(groupService.getGroupById(id).getGroupUsers().contains(user.getUser())) {
+
+            groupService.deleteStudentFromGroup(groupService.getGroupById(id), user);
+        }
+        else
+        {
+
+            System.out.println("You can`t leave this group as you are not in it");
         }
 
         List<Group> groups = groupService.getGroups();

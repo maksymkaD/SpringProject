@@ -5,9 +5,14 @@
 <body>
 <form action="#" th:action="@{/groups/create}" th:object="${groupCreateDTO}" method="post">
     <div class="mb-3">
+      <!--   <select th:field="*{groupSubjectId}" placeholder="Subject Id">
+            <option th:each="subject : ${subjects}" th:value="${subject.id}" th:text ="${subject.id}"></option>
+        </select>
+-->
         <label class="form-label">Subject Name:</label>
         <input class="form-control" type="text" th:field="*{groupSubjectId}" placeholder="Subject Name"/>
         <div class="form-text" th:if="${#fields.hasErrors('groupSubjectId')}" th:errors="*{groupSubjectId}">Name Error</div>
+
     </div>
     <div class="mb-3">
         <label class="form-label">Group Number</label>
