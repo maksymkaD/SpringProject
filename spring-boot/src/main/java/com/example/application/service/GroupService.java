@@ -1,26 +1,23 @@
 package com.example.application.service;
 
-import com.example.application.dto.student.StudentCreateDTO;
-import com.example.application.security.MyUserDetails;
-import org.springframework.stereotype.Service;
 import com.example.application.dal.model.Group;
-import com.example.application.dal.model.User;
+import com.example.application.dal.model.Subject;
 import com.example.application.dal.repository.GroupRepository;
+import com.example.application.dal.repository.SubjectRepository;
 import com.example.application.dto.group.GroupCreateDTO;
-import com.example.application.dto.group.GroupUpdateDTO;
+import com.example.application.security.MyUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class GroupService {
 
     @Autowired
     GroupRepository groupRepository;
+    @Autowired
+    SubjectRepository subjectRepository;
 
     public List<Group> getGroups() {
         return groupRepository.getGroups();
@@ -28,8 +25,10 @@ public class GroupService {
 
     public void createGroup(GroupCreateDTO groupDTO)
     {
+        Subject selected_subject = subjectRepository.getById(groupDTO.getGroupSubjectId());
+        System.out.println("DTO: " + groupDTO.getGroupSubjectId() + ", " + groupDTO.getNumber() + ", " + selected_subject.getName());
         Group group = new Group(
-                groupDTO.getSubjectName(),
+                selected_subject,
                 groupDTO.getNumber()
         );
         groupRepository.save(group);
@@ -43,7 +42,7 @@ public class GroupService {
 
     public void addStudetToGroup(Group group, MyUserDetails user)
     {
-        group.getUserList().add(user.getId());
+        group.getGroupUsers().add(user.getUser());
     }
 
     public  Group getGroupById(int Id)
