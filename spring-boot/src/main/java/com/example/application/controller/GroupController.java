@@ -1,23 +1,20 @@
 package com.example.application.controller;
 
 import com.example.application.dal.model.Group;
-import com.example.application.dal.model.User;
 import com.example.application.dto.group.GroupCreateDTO;
-import com.example.application.dto.student.StudentUpdateDTO;
 import com.example.application.security.MyUserDetails;
 import com.example.application.service.GroupService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 public class GroupController {
@@ -64,7 +61,7 @@ public class GroupController {
         MyUserDetails user = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
        // Group currentGroup =  groupService.getGroupById(id);
-        if(groupService.getGroupById(id).getUserList().contains(user.getId())) {
+        if(groupService.getGroupById(id).getGroupUsers().contains(user.getUser())) {
 
             System.out.println("You are already in here");
         }
@@ -73,8 +70,6 @@ public class GroupController {
             groupService.addStudetToGroup( groupService.getGroupById(id), user);
             System.out.println("Done");
         }
-
-
 
         List<Group> groups = groupService.getGroups();
         model.addAttribute("groups", groups);
