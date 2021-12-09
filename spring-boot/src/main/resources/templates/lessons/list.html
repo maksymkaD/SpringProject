@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head lang="en" th:replace="fragments/head :: head"></head>
+<header lang="en" th:replace="fragments/header :: header"></header>
+<body>
+<h1>Lessons</h1>
+<div th:switch="${lessons}">
+    <h2 th:case="null">No lessons yet!</h2>
+    <div th:case="*">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Subject ID</th>
+                <th>Group ID</th>
+                <th>Teacher ID</th>
+                <th>Date</th>
+                <th>Type</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="lesson : ${lessons}">
+                <td th:text="${lesson.subjectId}"></td>
+                <td th:text="${lesson.groupId}"></td>
+                <td th:text="${lesson.teacherId}"></td>
+                <td th:text="${lesson.date}"></td>
+                <td th:text="${lesson.type}"></td>
+                <td><a class="btn btn-warning" th:href="@{/lessons/update/{id}(id=${lesson.id})}">Update</a></td>
+                <td><a class="btn btn-danger" th:href="@{/lessons/delete/{id}(id=${lesson.id})}">Delete</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <p><a class="btn btn-primary" href="/lessons/create">Add a new lesson</a></p>
+</div>
+</body>
+<footer lang="en" th:replace="fragments/bot :: bot"></footer>
+</html>
