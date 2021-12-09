@@ -2,10 +2,11 @@ package com.example.application.controller;
 
 import com.example.application.model.Student;
 import com.example.application.service.StudentService;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.List;
 import java.util.Optional;
@@ -13,11 +14,14 @@ import java.util.Optional;
 @Validated
 @RestController
 public class StudentController {
+    private static final Logger logger = LogManager.getLogger(StudentController.class);
+
     @Autowired
     private StudentService studentService;
 
     @GetMapping("/students")
     public List<Student> getAllStudents() {
+        logger.debug("Sending students from controller");
         return studentService.getAllStudents();
     }
 

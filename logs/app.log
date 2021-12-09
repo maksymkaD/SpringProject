@@ -1,0 +1,6 @@
+2021-12-09 09:11:51,914 INFO c.e.a.Application [main] Starting Application using Java 15.0.3 on DESKTOP-G78BQNO with PID 11372 (C:\Users\maxym\ukma\4_course\spring\SpringProject\spring-boot\target\classes started by maxym in C:\Users\maxym\ukma\4_course\spring\SpringProject)
+2021-12-09 09:11:51,914 DEBUG c.e.a.Application [main] Running with Spring Boot v2.5.4, Spring v5.3.9
+2021-12-09 09:11:51,914 INFO c.e.a.Application [main] No active profile set, falling back to default profiles: default
+2021-12-09 09:11:54,261 INFO c.e.a.Application [main] Started Application in 2.597 seconds (JVM running for 3.312)
+2021-12-09 09:11:57,415 DEBUG c.e.a.c.StudentController [http-nio-8080-exec-1] Sending students from controller
+2021-12-09 09:12:09,588 DEBUG c.e.a.c.StudentController [http-nio-8080-exec-2] Sending students from controller
