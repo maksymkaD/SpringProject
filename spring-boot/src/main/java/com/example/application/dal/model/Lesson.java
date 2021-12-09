@@ -33,10 +33,7 @@ public class Lesson {
     private String type; // lecture | practice
 
     @ManyToOne
-    @JoinTable(name="subject_lessons",
-            joinColumns = @JoinColumn(name="lesson_id", referencedColumnName="id"),
-            inverseJoinColumns = @JoinColumn(name="subject_id", referencedColumnName="id")
-    )
+    @JoinColumn(name="subject_lessons")
     private Subject lessonSubject;
 
     public Lesson() {
