@@ -18,27 +18,24 @@ public class Student {
     private Integer id;
     @Column(name = "email") @Email
     private String email;
-    @Column(name = "password") @NotEmpty
+    @Column(name = "password") @NotBlank
     private String password;
-    @Column(name = "firstName") @NotEmpty
+    @Column(name = "firstName") @NotBlank
     private String firstName;
-    @Column(name = "lastName") @NotEmpty
+    @Column(name = "lastName") @NotBlank
     private String lastName;
-    @Column(name = "facultyId") @NotEmpty
-    private Integer facultyId;
     @Column(name = "yearOfStudy") @Min(1)@Max(4)
     private Integer yearOfStudy;
 
     public Student() {}
 
     public Student(@Valid  Integer id, String email, String password, String firstName,
-                   String lastName, Integer facultyId, Integer yearOfStudy) {
+                   String lastName, Integer yearOfStudy) {
         this.id = id;
         this.email = email;
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.facultyId = facultyId;
         this.yearOfStudy = yearOfStudy;
     }
 }
