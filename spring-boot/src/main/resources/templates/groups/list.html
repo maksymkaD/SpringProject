@@ -16,7 +16,7 @@
             </thead>
             <tbody>
             <tr th:each="group : ${groups}">
-                <td th:text="${group.subject}"></td>
+                <td th:text="${group.groupSubject.name}"></td>
                 <td th:text="${group.number}"></td>
                 <td><a class="btn btn-warning" th:href="@{/groups/join/{id}(id=${group.id})}">Join</a></td>
                 <td><a class="btn btn-danger" th:href="@{/groups/delete/{id}(id=${group.id})}">Delete</a></td>

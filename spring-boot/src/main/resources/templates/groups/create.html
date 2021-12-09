@@ -6,8 +6,8 @@
 <form action="#" th:action="@{/groups/create}" th:object="${groupCreateDTO}" method="post">
     <div class="mb-3">
         <label class="form-label">Subject Name:</label>
-        <input class="form-control" type="text" th:field="*{subjectName}" placeholder="Subject Name"/>
-        <div class="form-text" th:if="${#fields.hasErrors('subjectName')}" th:errors="*{subjectName}">Name Error</div>
+        <input class="form-control" type="text" th:field="*{groupSubjectId}" placeholder="Subject Name"/>
+        <div class="form-text" th:if="${#fields.hasErrors('groupSubjectId')}" th:errors="*{groupSubjectId}">Name Error</div>
     </div>
     <div class="mb-3">
         <label class="form-label">Group Number</label>
