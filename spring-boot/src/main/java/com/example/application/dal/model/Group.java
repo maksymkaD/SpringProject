@@ -5,9 +5,7 @@ import lombok.Setter;
 import org.springframework.validation.annotation.Validated;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
-import java.util.*;
+import java.util.Set;
 
 @Validated
 @Getter
@@ -19,33 +17,27 @@ public class Group {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column (name = "subject") @NotBlank
-    private String subject;
+    @ManyToOne
+    @JoinColumn(name="groups_subject")
+    private Subject groupSubject;
 
     @Column (name = "number") //group number
-    private int number;
-    @Column (name = "userList")
+    private Integer number;
 
-    @ElementCollection(targetClass=Integer.class)
-    private List<Integer> userList;
-
-    public Group(String subject, Integer number) {
-       this.subject = subject;
+    public Group(Subject groupSubject, Integer number) {
+       this.groupSubject = groupSubject;
        this.number = number;
-
     }
 
-    public Group()
-    {
-        this.subject = "NaN";
-        this.number = 0;
+    public Group() {
+
     }
 
     @ManyToMany
     @JoinTable(
-            name = "groups_students",
+            name = "group_students",
             joinColumns = @JoinColumn(name = "group_id"),
             inverseJoinColumns = @JoinColumn(name = "user_id")
     )
-    Set<User> GroupsOfStudent;
+    Set<User> groupUsers;
 }
