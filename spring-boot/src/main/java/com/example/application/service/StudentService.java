@@ -1,7 +1,7 @@
 package com.example.application.service;
 
-import com.example.application.dao.StudentDao;
 import com.example.application.model.Student;
+import com.example.application.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,17 +14,17 @@ import java.util.Optional;
 @Service
 public class StudentService {
     @Autowired
-    StudentDao studentDao;
+    StudentRepository studentRepository;
 
     public List<Student> getAllStudents() {
-        return studentDao.getAll();
+        return studentRepository.findAll();
     }
 
-    public Optional<Student> getStudent(long id) {
-        return studentDao.get(id);
+    public Optional<Student> getStudent(Integer id) {
+        return studentRepository.findById(id);
     }
 
-    public void deleteStudent(Student student) { studentDao.delete(student); }
+    public void deleteStudent(Integer id) { studentRepository.deleteById(id); }
 
-    public void createStudent(Student student) { studentDao.save(student); }
+    public void createStudent(Student student) { studentRepository.save(student); }
 }
