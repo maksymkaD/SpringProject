@@ -6,7 +6,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class GroupUpdateDTO {
-    private String subject_name;
+    private Integer groupSubjectId;
     private Integer number;
 
 }
