@@ -15,4 +15,9 @@ public interface GroupRepository extends JpaRepository<Group, Integer>{
             nativeQuery = true)
     List<Group> getGroups();
 
+
+    @Query(
+            value = "SELECT * FROM groups WHERE groups.id = ?1",
+            nativeQuery = true)
+    Group getById(int id);
 }

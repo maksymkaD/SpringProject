@@ -7,8 +7,8 @@ import org.springframework.validation.annotation.Validated;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
-import java.util.Set;
-import java.util.List;
+import java.util.*;
+
 @Validated
 @Getter
 @Setter
@@ -24,9 +24,10 @@ public class Group {
 
     @Column (name = "number") //group number
     private int number;
+    @Column (name = "userList")
 
-    @Column (name = "users")
-    private List<User> studentsInGroup;
+    @ElementCollection(targetClass=Integer.class)
+    private List<Integer> userList;
 
     public Group(String subject, Integer number) {
        this.subject = subject;
@@ -42,9 +43,9 @@ public class Group {
 
     @ManyToMany
     @JoinTable(
-            name = "user_groups",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "group_id")
+            name = "groups_students",
+            joinColumns = @JoinColumn(name = "group_id"),
+            inverseJoinColumns = @JoinColumn(name = "user_id")
     )
-    Set<Group> userGroups;
+    Set<User> GroupsOfStudent;
 }

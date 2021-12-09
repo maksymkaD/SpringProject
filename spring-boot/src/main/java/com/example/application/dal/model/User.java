@@ -100,4 +100,7 @@ public class User {
     Set<Subject> userSubjects;
 
 
+
+    @ManyToMany(mappedBy = "GroupsOfStudent")
+    Set<Group> UsersInGroups;
 }

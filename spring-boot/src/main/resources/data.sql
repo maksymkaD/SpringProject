@@ -36,6 +36,6 @@ VALUES (11, 'Math', '1');
 INSERT INTO groups (id, subject, number)
 VALUES (12, 'OKA', '1');
 
-/* STUDENTS GROUPS */
-INSERT INTO user_groups(user_id, group_id)
-VALUES (3, 11);
+/* STUDENTS IN GROUPS */
+/*INSERT INTO users_in_group (id, subject)
+VALUES (11,3);*/
