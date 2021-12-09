@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en" th:replace="fragments/head :: head"></head>
+<header lang="en" th:replace="fragments/header :: header"></header>
+<body>
+<form action="#" th:action="@{/subjects/create}" th:object="${subjectCreateDTO}" method="post">
+    <div class="mb-3">
+        <label class="form-label">Name:</label>
+        <input class="form-control" type="text" th:field="*{name}" placeholder="name"/>
+        <div class="form-text" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</div>
+    </div>
+
+    <label><button class="btn btn-success" type="submit">Submit</button></label>
+</form>
+</body>
+<footer lang="en" th:replace="fragments/bot :: bot"></footer>
+</html>
