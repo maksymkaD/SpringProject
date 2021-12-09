@@ -29,4 +29,7 @@ public class Subject {
 
     @ManyToMany(mappedBy = "userSubjects")
     Set<User> users;
+
+    @OneToMany(mappedBy = "lessonSubject")
+    Set<Lesson> subject_lessons;
 }
