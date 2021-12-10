@@ -3,7 +3,7 @@
 <head lang="en" th:replace="fragments/head :: head"></head>
 <header lang="en" th:replace="fragments/header :: header"></header>
 <body>
-<h1>Subjects</h1>
+<h1 th:text="${top_text}"></h1>
 <div th:switch="${subjects}">
     <h2 th:case="null">No subjects yet!</h2>
     <div th:case="*">

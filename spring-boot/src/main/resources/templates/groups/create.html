@@ -9,8 +9,8 @@
             <option th:each="subject : ${subjects}" th:value="${subject.id}" th:text ="${subject.id}"></option>
         </select>
 -->
-        <label class="form-label">Subject Name:</label>
-        <input class="form-control" type="text" th:field="*{groupSubjectId}" placeholder="Subject Name"/>
+        <label class="form-label">Subject Id:</label>
+        <input class="form-control" type="text" th:field="*{groupSubjectId}" placeholder="Subject Id"/>
         <div class="form-text" th:if="${#fields.hasErrors('groupSubjectId')}" th:errors="*{groupSubjectId}">Name Error</div>
 
     </div>

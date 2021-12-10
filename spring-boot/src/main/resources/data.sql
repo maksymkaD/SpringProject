@@ -1,6 +1,6 @@
 /* SUBJECTS */
 INSERT INTO subjects (id, name)
-VALUES (1, 'back end development');
+VALUES (1, 'Back end development');
 
 /* USERS WITH ROLE: ADMIN */
 INSERT INTO users (id, email, password, name, lastName, role)
