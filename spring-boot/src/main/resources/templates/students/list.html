@@ -14,8 +14,10 @@
                   <th>Last Name</th>
                   <th>Email</th>
                   <th>Year</th>
-                  <th>Edit</th>
-                  <th>Delete</th>
+                  <th:block th:if="${user_role == 'admin'}">
+                      <th>Edit</th>
+                      <th>Delete</th>
+                  </th:block>
               </tr>
               </thead>
               <tbody>
@@ -24,13 +26,17 @@
                   <td th:text="${student.lastName}"></td>
                   <td th:text="${student.email}"></td>
                   <td th:text="${student.year}"></td>
-                  <td><a class="btn btn-warning" th:href="@{/students/update/{id}(id=${student.id})}">Update</a></td>
-                  <td><a class="btn btn-danger" th:href="@{/students/delete/{id}(id=${student.id})}">Delete</a></td>
+                  <th:block th:if="${user_role == 'admin'}">
+                      <td><a class="btn btn-warning" th:href="@{/students/update/{id}(id=${student.id})}">Update</a></td>
+                      <td><a class="btn btn-danger" th:href="@{/students/delete/{id}(id=${student.id})}">Delete</a></td>
+                  </th:block>
               </tr>
               </tbody>
           </table>
       </div>
-      <p><a class="btn btn-primary" href="/students/create">Add a new student</a></p>
+      <th:block th:if="${user_role == 'admin'}">
+        <p><a class="btn btn-primary" href="/students/create">Add a new student</a></p>
+      </th:block>
   </div>
 </body>
 <footer lang="en" th:replace="fragments/bot :: bot"></footer>
