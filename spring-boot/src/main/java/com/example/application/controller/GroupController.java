@@ -26,6 +26,9 @@ public class GroupController {
         List<Group> groups = groupService.getGroups();
         model.addAttribute("groups", groups);
 
+        MyUserDetails user = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        model.addAttribute("user", user);
+
         return "groups/list";
     }
     @GetMapping("/groups/create")
