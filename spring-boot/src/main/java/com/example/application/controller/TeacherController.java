@@ -29,6 +29,14 @@ public class TeacherController {
         return "teachers/list";
     }
 
+    @GetMapping("/teachers/lessons")
+    public String getTeachersLessonsPage(Model model) {
+        List<User> teachers = teacherService.getTeachers();
+        model.addAttribute("teachers", teachers);
+
+        return "teachers/list";
+    }
+
     @GetMapping("/teachers/create")
     public String getCreateTeacherPage(TeacherCreateDTO teacherCreateDTO) {
         return "teachers/create";
