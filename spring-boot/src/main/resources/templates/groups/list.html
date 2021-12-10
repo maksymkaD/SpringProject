@@ -4,31 +4,84 @@
 <header lang="en" th:replace="fragments/header :: header"></header>
 <body>
 <h1>Groups</h1>
-<div th:switch="${groups}">
-    <h2 th:case="null">No groups yet!</h2>
-    <div th:case="*">
-        <table class="table">
-            <thead>
-            <tr>
-                <th>Subject</th>
-                <th>Group Number</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="group : ${groups}">
-                <td th:text="${group.groupSubject.name}"></td>
-                <td th:text="${group.number}"></td>
-                <td><a class="btn btn-success" th:href="@{/groups/join/{id}(id=${group.id})}">Join</a></td>
-                <td><a class="btn btn-warning" th:href="@{/groups/leave/{id}(id=${group.id})}">Leave group</a></td>
-                <td><a class="btn btn-danger" th:href="@{/groups/delete/{id}(id=${group.id})}">Delete</a></td>
+<div th:switch="${user.role}">
+    <div th:case="'admin'">
+        <div th:switch="${groups}">
+            <h2 th:case="null">No groups yet!</h2>
+            <div th:case="*">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Subject</th>
+                        <th>Group Number</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="group : ${groups}">
+                        <td th:text="${group.groupSubject.name}"></td>
+                        <td th:text="${group.number}"></td>
+                        <td><a class="btn btn-warning" th:href="@{/groups/leave/{id}(id=${group.id})}">Leave group</a></td>
+                        <td><a class="btn btn-danger" th:href="@{/groups/delete/{id}(id=${group.id})}">Delete</a></td>
+                    </tr>
+                    </tbody>
+                </table>
 
-
-            </tr>
-            </tbody>
-        </table>
-
+            </div>
+            <p><a class="btn btn-primary" href="/groups/create">Add a new group</a></p>
+        </div>
     </div>
-    <p><a class="btn btn-primary" href="/groups/create">Add a new group</a></p>
+    <div th:case="'teacher'">
+        <div th:switch="${groups}">
+            <h2 th:case="null">No groups yet!</h2>
+            <div th:case="*">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Subject</th>
+                        <th>Group Number</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="group : ${groups}">
+                        <td th:text="${group.groupSubject.name}"></td>
+                        <td th:text="${group.number}"></td>
+                        <td><a class="btn btn-success" th:href="@{/groups/join/{id}(id=${group.id})}">Join</a></td>
+                        <td><a class="btn btn-warning" th:href="@{/groups/leave/{id}(id=${group.id})}">Leave group</a></td>
+                        <td><a class="btn btn-danger" th:href="@{/groups/delete/{id}(id=${group.id})}">Delete</a></td>
+                    </tr>
+                    </tbody>
+                </table>
+
+            </div>
+            <p><a class="btn btn-primary" href="/groups/create">Add a new group</a></p>
+        </div>
+    </div>
+    <div th:case="'student'">
+        <div th:switch="${groups}">
+            <h2 th:case="null">No groups yet!</h2>
+            <div th:case="*">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Subject</th>
+                        <th>Group Number</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="group : ${groups}">
+                        <td th:text="${group.groupSubject.name}"></td>
+                        <td th:text="${group.number}"></td>
+                        <td><a class="btn btn-success" th:href="@{/groups/join/{id}(id=${group.id})}">Join</a></td>
+                        <td><a class="btn btn-warning" th:href="@{/groups/leave/{id}(id=${group.id})}">Leave group</a></td>
+                        <td><a class="btn btn-danger" th:href="@{/groups/delete/{id}(id=${group.id})}">Delete</a></td>
+                    </tr>
+                    </tbody>
+                </table>
+
+            </div>
+            <p><a class="btn btn-primary" href="/groups/create">Add a new group</a></p>
+        </div>
+    </div>
 </div>
 </body>
 <footer lang="en" th:replace="fragments/bot :: bot"></footer>
