@@ -2,8 +2,10 @@ package com.example.application.service;
 
 import com.example.application.dal.model.Group;
 import com.example.application.dal.model.Subject;
+import com.example.application.dal.model.User;
 import com.example.application.dal.repository.GroupRepository;
 import com.example.application.dal.repository.SubjectRepository;
+import com.example.application.dal.repository.UserRepository;
 import com.example.application.dto.group.GroupCreateDTO;
 import com.example.application.security.MyUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +20,8 @@ public class GroupService {
     GroupRepository groupRepository;
     @Autowired
     SubjectRepository subjectRepository;
+    @Autowired
+    UserRepository userRepository;
 
     public List<Group> getGroups() {
         return groupRepository.getGroups();
@@ -26,7 +30,6 @@ public class GroupService {
     public void createGroup(GroupCreateDTO groupDTO)
     {
         Subject selected_subject = subjectRepository.getById(groupDTO.getGroupSubjectId());
-        System.out.println("DTO: " + groupDTO.getGroupSubjectId() + ", " + groupDTO.getNumber() + ", " + selected_subject.getName());
         Group group = new Group(
                 selected_subject,
                 groupDTO.getNumber()
@@ -44,7 +47,9 @@ public class GroupService {
     {
         group.getGroupUsers().add(user.getUser());
         groupRepository.save(group);
-        System.out.println();
+        User current_user = userRepository.getById(user.getId());
+        current_user.getUserSubjects().add(group.getGroupSubject());
+        userRepository.save(current_user);
     }
     public void deleteStudentFromGroup (Group group, MyUserDetails user)
     {

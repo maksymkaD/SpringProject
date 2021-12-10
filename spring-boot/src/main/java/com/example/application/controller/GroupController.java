@@ -60,7 +60,6 @@ public class GroupController {
     public String joinGroup(@PathVariable("id") int id, Model model) {
         MyUserDetails user = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
-       // Group currentGroup =  groupService.getGroupById(id);
         if(groupService.getGroupById(id).getGroupUsers().contains(user.getUser())) {
             System.out.println("You are already in here");
         }
