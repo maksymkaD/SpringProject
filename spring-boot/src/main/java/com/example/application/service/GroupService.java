@@ -43,6 +43,8 @@ public class GroupService {
     public void addStudetToGroup(Group group, MyUserDetails user)
     {
         group.getGroupUsers().add(user.getUser());
+        groupRepository.save(group);
+        System.out.println();
     }
     public void deleteStudentFromGroup (Group group, MyUserDetails user)
     {

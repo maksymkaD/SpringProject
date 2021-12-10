@@ -62,13 +62,11 @@ public class GroupController {
 
        // Group currentGroup =  groupService.getGroupById(id);
         if(groupService.getGroupById(id).getGroupUsers().contains(user.getUser())) {
-
             System.out.println("You are already in here");
         }
         else
         {
-            groupService.addStudetToGroup( groupService.getGroupById(id), user);
-            groupService.getGroupById(id).toString();
+            groupService.addStudetToGroup(groupService.getGroupById(id), user);
             System.out.println("Done");
         }
 
