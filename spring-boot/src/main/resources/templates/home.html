@@ -9,12 +9,12 @@
         </div>
         <div th:case="'teacher'">
             Hello teacher
-            <a th:href="@{/subjects/teacher_subjects}">My Teacher Subjects</a>
+            <a th:href="@{/subjects/my_subjects}">My Teacher Subjects</a>
             <a th:href="@{/teachers/subjects}">My Teacher Lessons</a>
         </div>
         <div th:case="'student'">
             Hello student
-            <a th:href="@{/subjects/student_subjects}">My Student Subjects</a>
+            <a th:href="@{/subjects/my_subjects}">My Student Subjects</a>
             <a th:href="@{/students/subjects}">My Student Lessons</a>
         </div>
     </div>

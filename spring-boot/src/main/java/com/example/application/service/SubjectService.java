@@ -43,11 +43,7 @@ public class SubjectService {
         subjectRepository.deleteById(id);
     }
 
-    public List<Subject> getTeacherSubjects(Integer userId) {
-        return subjectRepository.getTeacherSubjects(userId);
-    }
-
-    public List<Subject> getStudentSubjects(Integer userId) {
-        return subjectRepository.getStudentSubjects(userId);
+    public List<Subject> getUserSubjects(Integer userId) {
+        return subjectRepository.getUserSubjects(userId);
     }
 }

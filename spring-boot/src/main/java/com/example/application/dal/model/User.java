@@ -64,14 +64,6 @@ public class User {
         this.year = year;
     }
 
-    @ManyToMany
-    @JoinTable(
-            name = "student_subjects",
-            joinColumns = @JoinColumn(name = "student_id"),
-            inverseJoinColumns = @JoinColumn(name = "subject_id")
-    )
-    Set<Subject> studentSubjects;
-
     /*
         Teacher constructor
      */

@@ -29,6 +29,7 @@ public class SubjectController {
     public String getSubjectsPage(Model model) {
         List<Subject> subjects = subjectService.getSubjects();
         model.addAttribute("subjects", subjects);
+        model.addAttribute("top_text", "Subjects");
 
         return "subjects/list";
     }
@@ -89,21 +90,12 @@ public class SubjectController {
         return "redirect:/subjects";
     }
 
-    @GetMapping("/subjects/teacher_subjects")
-    public String getTeacherSubjects(Model model) {
+    @GetMapping("/subjects/my_subjects")
+    public String getUserSubjects(Model model) {
         MyUserDetails user = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
-        List<Subject> subjects = subjectService.getTeacherSubjects(user.getId());
-        model.addAttribute("subjects", subjects);
-
-        return "subjects/list";
-    }
-
-    @GetMapping("/subjects/student_subjects")
-    public String getStudentSubjects(Model model) {
-        MyUserDetails user = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
-        List<Subject> subjects = subjectService.getStudentSubjects(user.getId());
+        List<Subject> subjects = subjectService.getUserSubjects(user.getId());
+        model.addAttribute("top_text", "Your subjects");
         model.addAttribute("subjects", subjects);
 
         return "subjects/list";

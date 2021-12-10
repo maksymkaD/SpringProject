@@ -10,13 +10,7 @@ import java.util.List;
 @Repository
 public interface SubjectRepository extends JpaRepository<Subject, Integer> {
     @Query(
-            value = "SELECT * FROM subjects WHERE ?1 IN (subjects.user_subjects)",
+            value = "SELECT * FROM subjects INNER JOIN user_subjects ON subjects.id = user_subjects.subject_id WHERE user_subjects.user_id = ?1",
             nativeQuery = true)
-    List<Subject> getTeacherSubjects(Integer userId);
-
-    @Query(
-            value = "SELECT * FROM subjects WHERE ?1 IN (subjects.user_subjects)",
-            nativeQuery = true)
-    List<Subject> getStudentSubjects(Integer userId);
-
+    List<Subject> getUserSubjects(Integer userId);
 }
