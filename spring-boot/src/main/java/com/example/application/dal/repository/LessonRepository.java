@@ -24,4 +24,10 @@ public interface LessonRepository extends JpaRepository<Lesson, Integer> {
             value = "SELECT * FROM lessons WHERE groupId = ?1",
             nativeQuery = true)
     List<Lesson> getByGroupId(Integer groupId);
+
+    @Query(
+            value = "SELECT * FROM lessons INNER JOIN user_subjects ON lessons.subjectId = user_subjects.subject_id "+
+            "WHERE user_subjects.user_id = ?1",
+            nativeQuery = true)
+    List<Lesson> getLessonsByUserId(Integer userId);
 }

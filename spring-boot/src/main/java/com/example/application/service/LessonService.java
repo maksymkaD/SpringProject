@@ -30,7 +30,7 @@ public class LessonService {
         return lessonRepository.getBySubjectId(subjectId);
     }
     public List<Lesson> getLessonsGroup(Integer groupId) { return lessonRepository.getByGroupId(groupId);  }
-
+    public List<Lesson> getLessonsByUser(Integer userId) { return lessonRepository.getLessonsByUserId(userId); }
 
     public Optional<Lesson> getLessonById(Integer id) {
         return lessonRepository.findById(id);
