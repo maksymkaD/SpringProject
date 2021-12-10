@@ -36,6 +36,8 @@ VALUES (11, 1, 1);
 INSERT INTO groups (id, groups_subject, number)
 VALUES (12, 1, 2);
 
-/* STUDENTS IN GROUPS */
-/*INSERT INTO users_in_group (id, subject)
-VALUES (11,3);*/
+/* LESSONS */
+INSERT INTO lessons (id,subjectId, groupId, teacherId, date, type)
+VALUES (0,1,11,1,'23.10.2021','lecture');
+
+
