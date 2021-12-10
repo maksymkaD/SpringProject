@@ -1,8 +1,10 @@
 package com.example.application.controller;
 
+import com.example.application.dal.model.Group;
 import com.example.application.dal.model.Lesson;
 import com.example.application.dto.lesson.LessonCreateDTO;
 import com.example.application.dto.lesson.LessonUpdateDTO;
+import com.example.application.service.GroupService;
 import com.example.application.service.LessonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -25,19 +27,33 @@ public class LessonController {
     public String getLessonsPage(Model model) {
         List<Lesson> lessons = lessonService.getLessons();
         model.addAttribute("lessons", lessons);
-
         return "lessons/list";
     }
 
     @GetMapping("/lessons/teacher/{id}")
     public String getTeacherLessonsPage(@PathVariable Integer id, Model model) {
-        //TO DO : {id} - ID OF STUDENT
+        List<Lesson> lessons = lessonService.getLessonsTeacher(id);
+        model.addAttribute("lessons", lessons);
         return "lessons/list";
     }
 
-    @GetMapping("/lessons/student/{id}")
-    public String getStudentLessonsPage(@PathVariable Integer id, Model model) {
-        List<Lesson> lessons = lessonService.getLessonsTeacher(id);
+    @GetMapping("/lessons/group/{id}")
+    public String getGroupLessonsPage(@PathVariable Integer id, Model model) {
+        List<Lesson> lessons = lessonService.getLessonsGroup(id);
+        model.addAttribute("lessons", lessons);
+        return "lessons/list";
+    }
+
+    @GetMapping("/lessons/subject/{id}")
+    public String getSubjectLessonsPage(@PathVariable Integer id, Model model) {
+        List<Lesson> lessons = lessonService.getLessonsSubject(id);
+        model.addAttribute("lessons", lessons);
+        return "lessons/list";
+    }
+
+    @GetMapping("/lessons/user/{id}")
+    public String getUserLessonsPage(@PathVariable Integer id, Model model) {
+        List<Lesson> lessons = lessonService.getLessonsByUser(id);
         model.addAttribute("lessons", lessons);
         return "lessons/list";
     }
