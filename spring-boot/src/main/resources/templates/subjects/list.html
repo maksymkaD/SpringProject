@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head lang="en" th:replace="fragments/head :: head"></head>
+<header lang="en" th:replace="fragments/header :: header"></header>
+<body>
+<h1>Subjects</h1>
+<div th:switch="${subjects}">
+    <h2 th:case="null">No subjects yet!</h2>
+    <div th:case="*">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Name</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="subject : ${subjects}">
+                <td th:text="${subject.name}"></td>
+                <td><a class="btn btn-warning" th:href="@{/subjects/update/{id}(id=${subject.id})}">Update</a></td>
+                <td><a class="btn btn-danger" th:href="@{/subjects/delete/{id}(id=${subject.id})}">Delete</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <p><a class="btn btn-primary" href="/subjects/create">Add a new subject</a></p>
+</div>
+</body>
+<footer lang="en" th:replace="fragments/bot :: bot"></footer>
+</html>
