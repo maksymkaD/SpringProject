@@ -1,10 +1,7 @@
 package com.example.application.service;
 
 import com.example.application.dal.model.Subject;
-import com.example.application.dal.model.User;
 import com.example.application.dal.repository.SubjectRepository;
-import com.example.application.dto.student.StudentCreateDTO;
-import com.example.application.dto.student.StudentUpdateDTO;
 import com.example.application.dto.subject.SubjectCreateDTO;
 import com.example.application.dto.subject.SubjectUpdateDTO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,5 +41,13 @@ public class SubjectService {
 
     public void deleteSubject(Integer id) {
         subjectRepository.deleteById(id);
+    }
+
+    public List<Subject> getTeacherSubjects(Integer userId) {
+        return subjectRepository.getTeacherSubjects(userId);
+    }
+
+    public List<Subject> getStudentSubjects(Integer userId) {
+        return subjectRepository.getStudentSubjects(userId);
     }
 }
