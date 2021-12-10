@@ -1,6 +1,7 @@
 package com.example.application.dal.repository;
 
-import com.example.application.dal.model.User;
+import com.example.application.dal.model.Group;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -8,16 +9,15 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface UserRepository extends JpaRepository<User, Integer> {
+public interface GroupRepository extends JpaRepository<Group, Integer>{
     @Query(
-            value = "SELECT * FROM users WHERE users.role = ?1",
+            value = "SELECT * FROM groups",
             nativeQuery = true)
-    List<User> getUsersByRole(String role);
+    List<Group> getGroups();
+
 
     @Query(
-            value = "SELECT * FROM users WHERE users.email = ?1",
+            value = "SELECT * FROM groups WHERE groups.id = ?1",
             nativeQuery = true)
-    User getByEmail(String email);
-
-
+    Group getById(int id);
 }

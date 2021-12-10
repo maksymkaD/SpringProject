@@ -29,6 +29,13 @@ public class Lesson {
     @Column(name = "type") @NotNull
     private String type; // lecture | practice
 
+
+    @ManyToOne
+    @JoinColumn(name="subject_lessons")
+    private Subject lessonSubject;
+
+
+
     public Lesson() {
     }
 

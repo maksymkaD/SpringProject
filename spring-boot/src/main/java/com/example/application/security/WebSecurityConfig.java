@@ -55,6 +55,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.GET, "/students/delete").hasAnyAuthority("admin");
 
         http.authorizeRequests()
+                .antMatchers(HttpMethod.GET, "/groups").hasAnyAuthority("admin", "teacher", "student")
+                .antMatchers(HttpMethod.GET, "/groups/create").hasAnyAuthority("admin", "teacher")
+                .antMatchers(HttpMethod.POST, "/groups/create").hasAnyAuthority("admin", "teacher")
+                .antMatchers(HttpMethod.GET, "/groups/delete/{id}").hasAnyAuthority("admin", "teacher")
+                .antMatchers(HttpMethod.GET, "/groups/leave/{id}").hasAnyAuthority("student")
+                .antMatchers(HttpMethod.GET, "/groups/join/{id}").hasAnyAuthority("student");
+
+        http.authorizeRequests()
                 .antMatchers(HttpMethod.GET, "/subjects").hasAnyAuthority("admin", "teacher", "student")
                 .antMatchers(HttpMethod.GET, "/subjects/create").hasAnyAuthority("teacher")
                 .antMatchers(HttpMethod.POST, "/subjects/create").hasAnyAuthority("teacher")
