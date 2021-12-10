@@ -5,45 +5,48 @@ import lombok.Setter;
 import org.springframework.validation.annotation.Validated;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
+import javax.validation.Valid;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
-@Validated
 @Getter
 @Setter
 @Entity
-@Table(name = "lessons")
+@Validated
+@Table(name = "Lessons")
 public class Lesson {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer id;
-
-    @Column(name = "subjectId")  @NotBlank
+    @Column(name = "subjectId")  @NotNull
     private Integer subjectId;
-
-    @Column(name = "groupId") @NotBlank
+    @Column(name = "groupId") @NotNull
     private Integer groupId;
-
-    @Column(name = "teacherId")  @NotBlank
+    @Column(name = "teacherId")  @NotNull
     private Integer teacherId;
-
-    @Column(name = "date", columnDefinition = "TIMESTAMP") @NotBlank
+    @Column(name = "date")  @NotNull
     private String date;
-
-    @Column(name = "type") @NotBlank
+    @Column(name = "type") @NotNull
     private String type; // lecture | practice
+
 
     @ManyToOne
     @JoinColumn(name="subject_lessons")
     private Subject lessonSubject;
 
+
+
     public Lesson() {
     }
 
     public Lesson(Integer subjectId, Integer groupId, Integer teacherId, String date, String type) {
+        this.id = id;
         this.subjectId = subjectId;
         this.groupId = groupId;
         this.teacherId = teacherId;
         this.date = date;
         this.type = type;
     }
+
+
 }

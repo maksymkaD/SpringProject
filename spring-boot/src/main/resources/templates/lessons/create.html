@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en" th:replace="fragments/head :: head"></head>
+<header lang="en" th:replace="fragments/header :: header"></header>
+<body>
+<form action="#" th:action="@{/lessons/create}" th:object="${lessonCreateDTO}" method="post">
+    <div class="mb-3">
+        <label class="form-label">Date:</label>
+        <input class="form-control" type="text" th:field="*{date}" placeholder="date"/>
+        <div class="form-text" th:if="${#fields.hasErrors('date')}" th:errors="*{date}">date Error</div>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Type:</label>
+        <input class="form-control" type="text" th:field="*{type}" id="type" placeholder="type">
+        <div class="form-text" th:if="${#fields.hasErrors('type')}" th:errors="*{type}">type Error</div>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Subject ID</label>
+        <input class="form-control" type="text" th:field="*{subjectId}" id="subjectId" placeholder="subject id">
+        <div class="form-text" th:if="${#fields.hasErrors('subjectId')}" th:errors="*{subjectId}">Subject ID Error</div>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Group ID</label>
+        <input class="form-control" type="text" th:field="*{groupId}" id="groupId" placeholder="group id">
+        <div class="form-text" th:if="${#fields.hasErrors('groupId')}" th:errors="*{groupId}">Group ID Error</div>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Teacher ID</label>
+        <input class="form-control" type="text" th:field="*{teacherId}" id="position" placeholder="teacher id">
+        <div class="form-text" th:if="${#fields.hasErrors('teacherId')}" th:errors="*{teacherId}">teacherId Error</div>
+    </div>
+
+    <label><button class="btn btn-success" type="submit">Submit</button></label>
+</form>
+</body>
+<footer lang="en" th:replace="fragments/bot :: bot"></footer>
+</html>
