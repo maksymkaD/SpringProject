@@ -32,4 +32,7 @@ public class Subject {
 
     @OneToMany(mappedBy = "lessonSubject")
     Set<Lesson> subject_lessons;
+
+    @OneToMany(mappedBy = "groupSubject")
+    Set<Group> subject_groups;
 }

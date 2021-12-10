@@ -1,11 +1,14 @@
 package com.example.application.security;
 
-import java.util.*;
-
 import com.example.application.dal.model.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.Objects;
 
 public class MyUserDetails implements UserDetails {
     private User user;
@@ -41,6 +44,8 @@ public class MyUserDetails implements UserDetails {
     public Integer getId() {
         return user.getId();
     }
+
+    public User getUser() {return user; }
 
     @Override
     public String getPassword() {

@@ -5,7 +5,6 @@ import lombok.Setter;
 import org.springframework.validation.annotation.Validated;
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import java.util.Set;
 
@@ -65,14 +64,6 @@ public class User {
         this.year = year;
     }
 
-    @ManyToMany
-    @JoinTable(
-            name = "student_subjects",
-            joinColumns = @JoinColumn(name = "student_id"),
-            inverseJoinColumns = @JoinColumn(name = "subject_id")
-    )
-    Set<Subject> studentSubjects;
-
     /*
         Teacher constructor
      */
@@ -98,4 +89,7 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "subject_id")
     )
     Set<Subject> userSubjects;
+
+    @ManyToMany(mappedBy = "groupUsers")
+    Set<Group> userGroups;
 }

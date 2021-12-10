@@ -3,9 +3,11 @@ package com.example.application.controller;
 import com.example.application.dal.model.User;
 import com.example.application.dto.student.StudentCreateDTO;
 import com.example.application.dto.student.StudentUpdateDTO;
+import com.example.application.security.MyUserDetails;
 import com.example.application.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -23,8 +25,10 @@ public class StudentController {
 
     @GetMapping("/students")
     public String getStudentsPage(Model model) {
+        MyUserDetails user = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         List<User> students = studentService.getStudents();
         model.addAttribute("students", students);
+        model.addAttribute("user_role", user.getRole());
 
         return "students/list";
     }

@@ -3,9 +3,11 @@ package com.example.application.controller;
 import com.example.application.dal.model.Subject;
 import com.example.application.dto.subject.SubjectCreateDTO;
 import com.example.application.dto.subject.SubjectUpdateDTO;
+import com.example.application.security.MyUserDetails;
 import com.example.application.service.SubjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -25,8 +27,11 @@ public class SubjectController {
 
     @GetMapping("/subjects")
     public String getSubjectsPage(Model model) {
+        MyUserDetails user = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         List<Subject> subjects = subjectService.getSubjects();
         model.addAttribute("subjects", subjects);
+        model.addAttribute("top_text", "Subjects");
+        model.addAttribute("user_role", user.getRole());
 
         return "subjects/list";
     }
@@ -85,5 +90,17 @@ public class SubjectController {
         model.addAttribute("subjects", subjects);
 
         return "redirect:/subjects";
+    }
+
+    @GetMapping("/subjects/my_subjects")
+    public String getUserSubjects(Model model) {
+        MyUserDetails user = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        List<Subject> subjects = subjectService.getUserSubjects(user.getId());
+        model.addAttribute("top_text", "Your subjects");
+        model.addAttribute("subjects", subjects);
+        model.addAttribute("user_role", user.getRole());
+
+        return "subjects/list";
     }
 }
