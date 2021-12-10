@@ -16,13 +16,17 @@
             <tbody>
             <tr th:each="subject : ${subjects}">
                 <td th:text="${subject.name}"></td>
-                <td><a class="btn btn-warning" th:href="@{/subjects/update/{id}(id=${subject.id})}">Update</a></td>
-                <td><a class="btn btn-danger" th:href="@{/subjects/delete/{id}(id=${subject.id})}">Delete</a></td>
+                <th:block th:if="${user_role == 'teacher'}">
+                    <td><a class="btn btn-warning" th:href="@{/subjects/update/{id}(id=${subject.id})}">Update</a></td>
+                    <td><a class="btn btn-danger" th:href="@{/subjects/delete/{id}(id=${subject.id})}">Delete</a></td>
+                </th:block>
             </tr>
             </tbody>
         </table>
     </div>
-    <p><a class="btn btn-primary" href="/subjects/create">Add a new subject</a></p>
+    <th:block th:if="${user_role == 'teacher'}">
+        <p><a class="btn btn-primary" href="/subjects/create">Add a new subject</a></p>
+    </th:block>
 </div>
 </body>
 <footer lang="en" th:replace="fragments/bot :: bot"></footer>

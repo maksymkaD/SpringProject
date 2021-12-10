@@ -14,8 +14,10 @@
                   <th>Last Name</th>
                   <th>Email</th>
                   <th>Position</th>
-                  <th>Edit</th>
-                  <th>Delete</th>
+                  <th:block th:if="${user_role == 'admin'}">
+                      <th>Edit</th>
+                      <th>Delete</th>
+                  </th:block>
               </tr>
               </thead>
               <tbody>
@@ -24,13 +26,18 @@
                   <td th:text="${teacher.lastName}"></td>
                   <td th:text="${teacher.email}"></td>
                   <td th:text="${teacher.position}"></td>
-                  <td><a class="btn btn-warning" th:href="@{/teachers/update/{id}(id=${teacher.id})}">Update</a></td>
-                  <td><a class="btn btn-danger" th:href="@{/teachers/delete/{id}(id=${teacher.id})}">Delete</a></td>
+
+                  <th:block th:if="${user_role == 'admin'}">
+                      <td><a class="btn btn-warning" th:href="@{/teachers/update/{id}(id=${teacher.id})}">Update</a></td>
+                      <td><a class="btn btn-danger" th:href="@{/teachers/delete/{id}(id=${teacher.id})}">Delete</a></td>
+                  </th:block>
               </tr>
               </tbody>
           </table>
       </div>
-      <p><a class="btn btn-primary" href="/teachers/create">Add a new teacher</a></p>
+      <th:block th:if="${user_role == 'admin'}">
+        <p><a class="btn btn-primary" href="/teachers/create">Add a new teacher</a></p>
+      </th:block>
   </div>
 </body>
 <footer lang="en" th:replace="fragments/bot :: bot"></footer>

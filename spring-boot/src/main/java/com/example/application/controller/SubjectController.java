@@ -27,9 +27,11 @@ public class SubjectController {
 
     @GetMapping("/subjects")
     public String getSubjectsPage(Model model) {
+        MyUserDetails user = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         List<Subject> subjects = subjectService.getSubjects();
         model.addAttribute("subjects", subjects);
         model.addAttribute("top_text", "Subjects");
+        model.addAttribute("user_role", user.getRole());
 
         return "subjects/list";
     }
@@ -97,6 +99,7 @@ public class SubjectController {
         List<Subject> subjects = subjectService.getUserSubjects(user.getId());
         model.addAttribute("top_text", "Your subjects");
         model.addAttribute("subjects", subjects);
+        model.addAttribute("user_role", user.getRole());
 
         return "subjects/list";
     }
